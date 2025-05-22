@@ -40,3 +40,21 @@
 .read-the-docs {
   color: #888;
 }
+.app-body{
+  background-color: #ffff;
+  height: 1000px;
+  width: 1000px;
+}
+.header{
+    color: black;
+    font-size: 25px;
+    font-weight: bold;
+}
+.image-buttons{
+    margin: 20px;
+    width: auto;
+    font-size: 12px;
+    color: black;
+    background: none;
+    border: 1px solid;
+}

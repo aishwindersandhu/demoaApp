@@ -1,12 +1,11 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 import { updateImage } from "../reducers/imageSlice";
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Webcam from "react-webcam";
 
 const FaceCapture = () => {
-  const webcamRef = useRef<any>(null);//Ref for camera 
-  // basically signalling that the ref can be anything other than null in future
   const dispatch = useDispatch();
+  const webcamRef = useRef<any>(null); //Ref for camera 
   const [isWebcamOpen, setIsWebcamOpen] = useState(false); // State to toggle webcam
   const [imgSrc, setImgSrc] = useState(null); // State to store the captured image
   const [mirrored, setMirrored] = useState(false); //State for mirroring the image
@@ -21,14 +20,11 @@ const FaceCapture = () => {
       setIsWebcamOpen(false);
     }
   }, [webcamRef]);
+
   return (
     <div>
-      1.Click to capture image
-      2. Save Image on machine/api
-      3. Read the image
       <div>
         <button onClick={() => setIsWebcamOpen(true)}>Open Webcam</button>
-        {/* <button onClick={() => setIsWebcamOpen(false)}>Close Webcam</button> */}
         <button onClick={() => saveImage()}>Click Image</button>
         <input type="checkbox"
           checked={mirrored}
@@ -37,7 +33,7 @@ const FaceCapture = () => {
           }}
           name="Mirror Image"
           value="mirror" />
-        <label>Mirror Image</label>
+        <label style={{ color: 'black' }}>Mirror Image</label>
 
       </div>
       <div>
@@ -50,9 +46,9 @@ const FaceCapture = () => {
             </Webcam>
           )
         }
-        {
+        {/* {
           !isWebcamOpen && imgSrc && (<img src={imgSrc}></img>)
-        }
+        } */}
 
       </div >
     </div >
