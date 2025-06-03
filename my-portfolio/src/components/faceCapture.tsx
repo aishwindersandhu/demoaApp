@@ -8,7 +8,7 @@ const FaceCapture = () => {
   const dispatch = useDispatch();
   const webcamRef = useRef<any>(null); //Ref for camera 
   const [isWebcamOpen, setIsWebcamOpen] = useState(false); // State to toggle webcam
-  const [mirrored, setMirrored] = useState(false); //State for mirroring the image
+  const [mirrored, setMirrored] = useState(true); //State for mirroring the image
 
   const saveImage = useCallback(() => {
     if (webcamRef.current !== null) {
@@ -25,7 +25,12 @@ const FaceCapture = () => {
       <div>
         <button
           className='face-capture-buttons'
-          onClick={() => setIsWebcamOpen(true)}>Open Webcam</button>
+          onClick={() => {
+            //if there's an exisiting image src, clear it before capturing a new one.
+            dispatch(updateImage(''));
+            setIsWebcamOpen(true);
+
+          }}>Open Webcam</button>
         <button
           className='face-capture-buttons'
           onClick={() => saveImage()}>Click Image</button>
@@ -36,7 +41,7 @@ const FaceCapture = () => {
           }}
           name="Mirror Image"
           value="mirror" />
-        <label style={{ color: 'black' }}>Mirror Image</label>
+        <label style={{ color: 'black', fontSize:'12px' }}>Mirror Image</label>
 
       </div>
       <div>
@@ -51,7 +56,6 @@ const FaceCapture = () => {
             </Webcam>
           )
         }
-
       </div >
     </div >
   )
