@@ -46,6 +46,7 @@ const FaceCapture = () => {
       </div>
       <div>
         {/* opens everytime you click open webcam, gives an opportunity to click a new picture */}
+        {/* Fix alignment */}
         {
           isWebcamOpen && (
             <Webcam

@@ -30,6 +30,7 @@ function App() {
     //send image to server for analyzing
     //Show loader, till server responds with data
     dispatch(displayLoader(!isLoading));
+    //TO:DO - make an api call and send image for processing
   }
   const ctaButtonClass = imageSrc !== '' ? 'cta-button' : 'cta-button-disabled';
   return (
@@ -61,6 +62,8 @@ function App() {
             className={ctaButtonClass}
             onClick={() => { analyzePicture() }}
           >Analyze Picture</button>
+          {/* Display data details: Skin tone and face shape, eye shape */}
+          {/* Display in card layout */}
         </div>
       </div>
 
