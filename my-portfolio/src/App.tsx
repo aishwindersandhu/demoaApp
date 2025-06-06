@@ -13,9 +13,10 @@ function App() {
   const [isCaptureImage, setSelectedOption] = useState<boolean>(false);
   const userImageRef = useRef<HTMLInputElement>(null);
   const imageSrc = useSelector((state: RootState) => { return state.imageReducer.imageLink })
-  const isLoading = useSelector((state: RootState) => { return state.utilsReducer.isLoading})
+  const isLoading = useSelector((state: RootState) => { return state.utilsReducer.isLoading })
 
   const uploadUserImage = () => {
+    setSelectedOption(false); // turn off the camera if open forcefully
     userImageRef.current?.click();
   }
   const handleImageUpload = () => {
@@ -50,10 +51,12 @@ function App() {
             onChange={() => { handleImageUpload() }}
             style={{ display: 'none' }}
           ></input>
-          {/* will update image from the facecapture component */}
+          <div>
+             {/* will update image from the facecapture component */}
           {isCaptureImage && <FaceCapture></FaceCapture>}
           {/*Preview Image */}
           <UserImage></UserImage>
+          </div>
           <button
             className={ctaButtonClass}
             onClick={() => { analyzePicture() }}

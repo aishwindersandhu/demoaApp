@@ -12,16 +12,21 @@ export const UserImage = () => {
   return (
     <div >
       {
-        imageSrc && !isLoading && (<img src={imageSrc} alt='Image Preview' height={200} width={300} />)
+        imageSrc && !isLoading && (<img
+          src={imageSrc} alt='Image Preview' height={200} width={300}
+          style={{ display: 'inline-flex' }} />)
       }
       {
         isLoading && (
-          <div  className="w-10 h-10 border-4 border-black border-t-white bg-red-100 rounded-full animate-spin">
-
-          </div>
-          
+          <div style={{display:'flex', justifyContent:'center',alignItems:'center'}}>
+            <div className='flex items-center justify-center h-[200px] bg-gray-100 w-[300px]'>
+              <div
+                className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin">
+              </div>
+            </div></div>
         )
       }
+
     </div>
   )
 }
