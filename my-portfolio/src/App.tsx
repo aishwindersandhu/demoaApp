@@ -53,10 +53,13 @@ function App() {
             style={{ display: 'none' }}
           ></input>
           <div>
-             {/* will update image from the facecapture component */}
-          {isCaptureImage && <FaceCapture></FaceCapture>}
-          {/*Preview Image */}
-          <UserImage></UserImage>
+            {/* will update image from the facecapture component */}
+            <div className="face-capture-div">
+              {isCaptureImage && <FaceCapture></FaceCapture>}
+            </div>
+
+            {/*Preview Image */}
+            <UserImage></UserImage>
           </div>
           <button
             className={ctaButtonClass}
