@@ -10,14 +10,14 @@ export const imageApi = createApi({
     //builder.mutation used for POST and PUT requests
     //Creating an api hook that can be consumed on the front end.
     uploadImage: builder.mutation<object, File>({
-      query: (image) => {
-        console.log(image, "image data");
+      query: (file) => {
+        console.log(file,"data");
         const formData = new FormData(); //creates POST Obj or the request params
-        formData.append('file', image);
+        formData.append('file', file);
         return {
-          url: '/analyze_image', // this should be your backend endpoint
+          url: '/analyze', // this should be your backend endpoint
           method: 'POST',
-          body: formData,
+         body: formData,
         };
       },
     }),
@@ -25,4 +25,4 @@ export const imageApi = createApi({
 
 });
 
-export const { useUploadImageMutation } = imageApi;
+export const {useUploadImageMutation } = imageApi;
