@@ -6,14 +6,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateImage } from './reducers/imageSlice';
 import { displayLoader } from './reducers/utilSlice';
 import { RootState } from './redux/store';
+import { useUploadImageMutation } from './api/imageAPI';
 
 
 function App() {
   const dispatch = useDispatch();
   const [isCaptureImage, setSelectedOption] = useState<boolean>(false);
   const userImageRef = useRef<HTMLInputElement>(null);
-  const imageSrc = useSelector((state: RootState) => { return state.imageReducer.imageLink })
-  const isLoading = useSelector((state: RootState) => { return state.utilsReducer.isLoading })
+  const imageSrc = useSelector((state: RootState) => { return state.imageReducer.imageLink });
+  const isLoading = useSelector((state: RootState) => { return state.utilsReducer.isLoading });
+  const [uploadImage] = useUploadImageMutation();
 
   const uploadUserImage = () => {
     setSelectedOption(false); // turn off the camera if open forcefully
@@ -30,6 +32,13 @@ function App() {
     //send image to server for analyzing
     //Show loader, till server responds with data
     dispatch(displayLoader(!isLoading));
+    //take this into a utils file where and return processed data.
+    uploadImage(imageSrc).then((res) => {
+      if (res) {
+        dispatch(displayLoader(false));//disable the loader when data analysis received.
+        console.log(res.data, "response");
+      }
+    });
     //TO:DO - make an api call and send image for processing
   }
   const ctaButtonClass = imageSrc !== '' ? 'cta-button' : 'cta-button-disabled';
