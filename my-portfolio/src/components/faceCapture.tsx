@@ -3,8 +3,9 @@ import { updateImage } from "../reducers/imageSlice";
 import { useDispatch } from 'react-redux';
 import '../styles/faceCapture.css';
 import Webcam from "react-webcam";
+import {base64ToBlob} from '../utils/utils';
 
-const FaceCapture = () => {
+const FaceCapture = ({handleWebImage}) => {
   const dispatch = useDispatch();
   const webcamRef = useRef<any>(null); //Ref for camera 
   const [isWebcamOpen, setIsWebcamOpen] = useState(false); // State to toggle webcam
@@ -15,7 +16,9 @@ const FaceCapture = () => {
       const imageSrc = webcamRef.current.getScreenshot();
       //store it in redux store or make an api call in case of storing it in DB
       //dispatch relevant actions
+      const imageToFile =  base64ToBlob(imageSrc);
       dispatch(updateImage(imageSrc));
+      handleWebImage(imageToFile)
       setIsWebcamOpen(false);
     }
   }, [webcamRef]);
@@ -29,7 +32,6 @@ const FaceCapture = () => {
             //if there's an exisiting image src, clear it before capturing a new one.
             dispatch(updateImage(''));
             setIsWebcamOpen(true);
-
           }}>Open Webcam</button>
         <button
           className='face-capture-buttons'
