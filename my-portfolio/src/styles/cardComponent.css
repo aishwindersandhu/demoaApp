@@ -1,14 +1,23 @@
-.card-component-layout{
-    width: 300px;
-    border: 1px solid lightgray;
-    margin-left: 35%;
-    border-radius: 10px;
-    height: 100px;
-    color: black;
-    margin-top: 20px;
+.card-component-layout {
+  width: 300px;
+  border: 1px solid lightgray;
+  margin-left: 35%;
+  border-radius: 10px;
+  height: 100px;
+  color: black;
+  margin-top: 20px;
 }
-.card-label{
-    text-align: left;
-    padding: 10px;
-    text-transform: capitalize;
+
+.card-label {
+  text-align: left;
+  padding: 10px;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
+.card-label .card-data-label{
+  padding: 15px;
+}
+.card-data-div{
+  display: flex;
 }

@@ -73,7 +73,7 @@
 .cta-button :hover{
   background-color: #4338CA;
 }
-.face-capture-div{
+.image-upload-div{
   display: flex;
   justify-content: center;
   align-items: center;

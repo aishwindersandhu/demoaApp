@@ -76,7 +76,7 @@ const { isLoading: isLoading, showCards: showCards  }  = useSelector((state: Roo
           ></input>
           <div>
             {/* will update image from the facecapture component */}
-            <div className="face-capture-div">
+            <div className="image-upload-div">
               {isCaptureImage && <FaceCapture handleWebImage={handleWebImage}></FaceCapture>}
             </div>
             {/*Preview Image */}
