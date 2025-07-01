@@ -1,19 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { List } from "postcss/lib/list";
 
 interface FaceDetails {
   skinTone: string;
   faceShape: string;
   colorCode: string;
-
+  colorPalette : Array<List>;
 }
 interface ImageData {
   data: FaceDetails;
-
 }
 interface ImageReducerState {
   imageLink: string;
   imageData: ImageData;
-
 }
 //Define initial state
 const initialState: ImageReducerState = {
@@ -23,29 +22,25 @@ const initialState: ImageReducerState = {
     data:{
       skinTone: '',
       colorCode:'',
-      faceShape:''
+      faceShape:'',
+      colorPalette: []
     }
   },
 }
-
 const imageReducer = createSlice({
   name: "image",
   initialState,
   reducers: {
     //actions that updates state variables.
     updateImage: (state, action) => {
-      console.log(action, action.payload, "update Image store");
       state.imageLink = action.payload;
     },
     getImageData: (state, action) => {
-      console.log(action.payload, "image data");
       state.imageData = action.payload;
     }
   }
 });
-
 //export actions
 export const { updateImage, getImageData } = imageReducer.actions;
-
 //export reducer 
 export default imageReducer.reducer;

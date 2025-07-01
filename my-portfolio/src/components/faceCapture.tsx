@@ -3,9 +3,9 @@ import { updateImage } from "../reducers/imageSlice";
 import { useDispatch } from 'react-redux';
 import '../styles/faceCapture.css';
 import Webcam from "react-webcam";
-import {base64ToBlob} from '../utils/utils';
+import { base64ToBlob } from '../utils/utils';
 
-const FaceCapture = ({handleWebImage}) => {
+const FaceCapture = ({ handleWebImage }) => {
   const dispatch = useDispatch();
   const webcamRef = useRef<any>(null); //Ref for camera 
   const [isWebcamOpen, setIsWebcamOpen] = useState(false); // State to toggle webcam
@@ -16,7 +16,7 @@ const FaceCapture = ({handleWebImage}) => {
       const imageSrc = webcamRef.current.getScreenshot();
       //store it in redux store or make an api call in case of storing it in DB
       //dispatch relevant actions
-      const imageToFile =  base64ToBlob(imageSrc);
+      const imageToFile = base64ToBlob(imageSrc); // convert image to file type
       dispatch(updateImage(imageSrc));
       handleWebImage(imageToFile)
       setIsWebcamOpen(false);
@@ -43,12 +43,9 @@ const FaceCapture = ({handleWebImage}) => {
           }}
           name="Mirror Image"
           value="mirror" />
-        <label style={{ color: 'black', fontSize:'12px' }}>Mirror Image</label>
-
+        <label style={{ color: 'black', fontSize: '12px' }}>Mirror Image</label>
       </div>
       <div>
-        {/* opens everytime you click open webcam, gives an opportunity to click a new picture */}
-        {/* Fix alignment */}
         {
           isWebcamOpen && (
             <Webcam
@@ -63,5 +60,4 @@ const FaceCapture = ({handleWebImage}) => {
     </div >
   )
 }
-
 export default FaceCapture;

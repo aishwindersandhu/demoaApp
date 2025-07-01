@@ -1,15 +1,16 @@
 import { RootState } from '../redux/store';
 import { useSelector } from "react-redux";
 import '../styles/cardComponent.css';
+import { JSX, Fragment } from 'react';
 
 const CardComponent = () => {
-  const imageData  = useSelector((state: RootState) =>  state.imageReducer.imageData );
-  const { skinTone, faceShape, colorCode } = imageData.data;
-
+  const imageData = useSelector((state: RootState) => state.imageReducer.imageData);
+  const { skinTone, faceShape, colorCode, colorPalette } = imageData.data;
   const getCardDetails = (title: string) => {
     let classLabel = '';
     let styleData = {};
     let cardLabel = '';
+    let palette: JSX.Element[] = [];
     if (title == 'Skin Tone') {
       classLabel = 'w-10 h-10 mt-2 rounded-full';
       styleData = {
@@ -17,27 +18,44 @@ const CardComponent = () => {
       }
       cardLabel = skinTone;
     }
-    else {
+    else if (title == 'Face Shape') {
       classLabel = 'w-8 h-10 mt-2 rounded-full';
       cardLabel = faceShape;
       styleData = {
         border: '1px solid black'
       }
     }
-    return { classLabel, styleData, cardLabel };
+    else {
+      //return different UI for color palette
+      for (var i in colorPalette) {
+        const shadeCard = <div className='w-10 h-10 m-2 rounded-full'
+          style={{ backgroundColor: colorPalette[i] }}></div>;
+        palette.push(shadeCard);
+      }
+      //return palette;
+    }
+    return { classLabel, styleData, cardLabel, palette };
   }
   const getCards = () => {
     let cards = [];
-    const cardTitles = ['Skin Tone', 'Face Shape'];
-    //for every card title generate a new car
+    const cardTitles = ['Skin Tone', 'Color Palette', 'Face Shape',];
+    //for every card title generate a new card
     for (var i in cardTitles) {
       let title = cardTitles[i];
-      const { classLabel, styleData, cardLabel } = getCardDetails(title);
+      const { classLabel, styleData, cardLabel, palette } = getCardDetails(title);
       let card = <div className='card-component-layout card-label'>
         {cardTitles[i]}
         <div className='card-data-div'>
-          <div className={`${classLabel}`} style={styleData}></div>
-          <div className='card-data-label'> {cardLabel}</div>
+
+          {
+            palette.length > 0 ? (<div style={{ display: 'flex' }}>{palette}</div>) :
+              (
+                <Fragment>
+                  <div className={`${classLabel}`} style={styleData}></div>
+                  <div className='card-data-label' style={{ display: 'flex' }}> {cardLabel}</div>
+                </Fragment>
+              )
+          }
         </div>
       </div>;
       cards.push(card);
@@ -50,5 +68,4 @@ const CardComponent = () => {
     </div>
   )
 }
-
 export default CardComponent;

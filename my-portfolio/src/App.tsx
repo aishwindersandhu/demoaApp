@@ -53,7 +53,6 @@ const { isLoading: isLoading, showCards: showCards  }  = useSelector((state: Roo
       }
     });
   }
-
   const ctaButtonClass = imageSrc !== '' ? 'cta-button' : 'cta-button-disabled';
   return (
     <>
@@ -91,8 +90,6 @@ const { isLoading: isLoading, showCards: showCards  }  = useSelector((state: Roo
           {showCards && <CardComponent></CardComponent>}
         </div>
       </div>
-
-
     </>
   )
 }
