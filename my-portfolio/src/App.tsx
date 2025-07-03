@@ -57,8 +57,8 @@ const { isLoading: isLoading, showCards: showCards  }  = useSelector((state: Roo
   return (
     <>
       <div id="app-title" className='app-body'>
-        <title> Beauty Profile Analyzer</title>
-        <div className='header'> Beauty Profile Analyzer</div>
+        <title> Face Analyzer</title>
+        <div className='header'> Face Analyzer</div>
         <div>
           <button
             className='image-buttons'

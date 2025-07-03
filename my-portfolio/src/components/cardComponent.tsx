@@ -11,7 +11,7 @@ const CardComponent = () => {
     let styleData = {};
     let cardLabel = '';
     let palette: JSX.Element[] = [];
-    if (title == 'Skin Tone') {
+    if (title == 'Dominant Skin Tone') {
       classLabel = 'w-10 h-10 mt-2 rounded-full';
       styleData = {
         backgroundColor: colorCode,
@@ -38,7 +38,7 @@ const CardComponent = () => {
   }
   const getCards = () => {
     let cards = [];
-    const cardTitles = ['Skin Tone', 'Color Palette', 'Face Shape',];
+    const cardTitles = ['Dominant Skin Tone', 'Color Palette', 'Face Shape',];
     //for every card title generate a new card
     for (var i in cardTitles) {
       let title = cardTitles[i];
