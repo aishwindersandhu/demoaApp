@@ -18,13 +18,13 @@ const CardComponent = () => {
       }
       cardLabel = skinTone;
     }
-    else if (title == 'Face Shape') {
-      classLabel = 'w-8 h-10 mt-2 rounded-full';
-      cardLabel = faceShape;
-      styleData = {
-        border: '1px solid black'
-      }
-    }
+    // else if (title == 'Face Shape') {
+    //   classLabel = 'w-8 h-10 mt-2 rounded-full';
+    //   cardLabel = faceShape;
+    //   styleData = {
+    //     border: '1px solid black'
+    //   }
+    // }
     else {
       //return different UI for color palette
       for (var i in colorPalette) {
@@ -38,7 +38,9 @@ const CardComponent = () => {
   }
   const getCards = () => {
     let cards = [];
-    const cardTitles = ['Dominant Skin Tone', 'Color Palette', 'Face Shape',];
+    const cardTitles = ['Dominant Skin Tone', 'Color Palette', 
+      //'Face Shape'
+    ];
     //for every card title generate a new card
     for (var i in cardTitles) {
       let title = cardTitles[i];
