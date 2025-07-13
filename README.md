@@ -21,3 +21,15 @@ the /api folder.
 - Optimsie code and work on performance
 - Unit test cases for the components
 - As part of the future scope, I'm looking to stage this on a server too.
+
+# Current Implementation
+- ![Different-region-1](https://github.com/user-attachments/assets/fe67b1d3-b2a2-4ebc-9d81-1b718364f120) (detection of skin color from forehead)
+![colorpalette_success_1](https://github.com/user-attachments/assets/1b3bc284-c6e1-485b-b0d8-f85401d10e1c) (detection of skin color from cheeks)
+![improper-lightning-failure#2](https://github.com/user-attachments/assets/e4ca76f2-0b31-4b64-aa17-c6c66cc123f7) (detection of skin color from cheeks, played around with lighting to get few shades darker)
+![uploadedImage](https://github.com/user-attachments/assets/4afdce70-5e3e-481e-ad7a-b28d1387574d) (detetction of skin color from an uploaded image with vibrant color in space)
+![uploadImage2](https://github.com/user-attachments/assets/7fc85b73-e253-4755-bb35-39b2e5f61662) (reference of hex colors from google)
+
+
+
+
+
