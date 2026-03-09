@@ -8,6 +8,7 @@ import { updateImage,getImageData, } from './reducers/imageSlice';
 import { displayLoader,displayCards } from './reducers/utilSlice';
 import { RootState } from './redux/store';
 import { useUploadImageMutation } from './api/imageAPI';
+import { SkinDetection } from './components/skinDetectionPanel';
 
 
 function App() {
@@ -88,6 +89,9 @@ const { isLoading: isLoading, showCards: showCards  }  = useSelector((state: Roo
           {/* Display data details: Skin tone and face shape, eye shape */}
           {/* Display in card layout */}
           {showCards && <CardComponent></CardComponent>}
+
+          {/*Display Left Panel - Skin detection panel*/}
+          <SkinDetection></SkinDetection>
         </div>
       </div>
     </>

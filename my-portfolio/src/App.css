@@ -1,7 +1,5 @@
 #root {
   max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
 
@@ -43,7 +41,8 @@
 .app-body{
   background-color: #ffff;
   height: 1000px;
-  width: 1000px;
+  /* For full width */
+  width: 1500px; 
 }
 .header{
     color: black;
