@@ -1,11 +1,15 @@
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useState, useRef, useCallback } from "react";
 import { updateImage } from "../reducers/imageSlice";
 import { useDispatch } from 'react-redux';
 import '../styles/faceCapture.css';
 import Webcam from "react-webcam";
+import React from "react";
 import { base64ToBlob } from '../utils/utils';
 
-const FaceCapture = ({ handleWebImage }) => {
+interface FaceCaptureProps {
+  handleWebImage :(image: File) =>void;
+}
+const FaceCapture: React.FC<FaceCaptureProps> = ({ handleWebImage }) => {
   const dispatch = useDispatch();
   const webcamRef = useRef<any>(null); //Ref for camera 
   const [isWebcamOpen, setIsWebcamOpen] = useState(false); // State to toggle webcam
@@ -38,7 +42,7 @@ const FaceCapture = ({ handleWebImage }) => {
           onClick={() => saveImage()}>Click Image</button>
         <input type="checkbox"
           checked={mirrored}
-          onClick={(e) => {
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             setMirrored(e.target.checked);
           }}
           name="Mirror Image"

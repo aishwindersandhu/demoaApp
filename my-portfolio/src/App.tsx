@@ -30,16 +30,16 @@ const { isLoading: isLoading, showCards: showCards  }  = useSelector((state: Roo
   }
   const handleImageUpload = () => {
     if (userImageRef.current !== null) {
-      const fileInput = userImageRef.current.files ? userImageRef.current.files[0] : null;
+      const fileInput = userImageRef.current.files ? userImageRef.current.files[0] : undefined;
       const imageURL = fileInput ? URL.createObjectURL(fileInput) : '';
       dispatch(updateImage(imageURL));
       setFileData(fileInput);
     }
   }
-  const handleWebImage = (data) =>{
+  const handleWebImage = (data : File) =>{
     setFileData(data);
   }
-  const analyzePicture = (fileData) => {
+  const analyzePicture = (fileData : File) => {
     //Show loader, till server responds with data
     dispatch(displayLoader(!isLoading));
     //Making API call with file Data.
@@ -83,7 +83,7 @@ const { isLoading: isLoading, showCards: showCards  }  = useSelector((state: Roo
           </div>
           <button
             className={ctaButtonClass}
-            onClick={() => { analyzePicture(fileData) }}
+            onClick={() => {fileData && analyzePicture(fileData) }}
           >Analyze Picture</button>
           {/* Display data details: Skin tone and face shape, eye shape */}
           {/* Display in card layout */}
@@ -94,4 +94,4 @@ const { isLoading: isLoading, showCards: showCards  }  = useSelector((state: Roo
   )
 }
 
-export default App
+export default App;

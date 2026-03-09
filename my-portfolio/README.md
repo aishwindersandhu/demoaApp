@@ -21,3 +21,4 @@ the /api folder.
 - Optimsie code and work on performance
 - Unit test cases for the components
 - As part of the future scope, I'm looking to stage this on a server too.
+ 

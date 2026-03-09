@@ -5,7 +5,7 @@ import { JSX, Fragment } from 'react';
 
 const CardComponent = () => {
   const imageData = useSelector((state: RootState) => state.imageReducer.imageData);
-  const { skinTone, faceShape, colorCode, colorPalette } = imageData.data;
+  const { skinTone, colorCode, colorPalette } = imageData.data;
   const getCardDetails = (title: string) => {
     let classLabel = '';
     let styleData = {};
@@ -27,8 +27,9 @@ const CardComponent = () => {
     // }
     else {
       //return different UI for color palette
-      for (var i in colorPalette) {
+      for (let i=0; i< colorPalette.length ; i ++) {
         const shadeCard = <div className='w-10 h-10 m-2 rounded-full'
+          key={`${i}-color`}
           style={{ backgroundColor: colorPalette[i] }}></div>;
         palette.push(shadeCard);
       }
@@ -48,7 +49,6 @@ const CardComponent = () => {
       let card = <div className='card-component-layout card-label'>
         {cardTitles[i]}
         <div className='card-data-div'>
-
           {
             palette.length > 0 ? (<div style={{ display: 'flex' }}>{palette}</div>) :
               (
