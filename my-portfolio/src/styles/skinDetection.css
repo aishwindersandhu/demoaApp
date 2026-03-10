@@ -5,3 +5,45 @@
     border-radius: 10px;
     margin-left: 35px;
 }
+.user-section{
+    color: black;
+    display: flex;
+    height: 140px;
+    border-bottom: 0.15px solid #B1ADAD;
+    margin: 15px;
+}
+.palette-section{
+   color: black;
+    height: 140px;
+    border-bottom: 0.15px solid #B1ADAD;
+    margin: 15px;
+}
+.palette-color-pan{
+  height:45px;
+  width:80px;
+  border:0.15px solid black;
+  border-radius:8px;
+  margin-right: 25px;
+  margin-top: 10px;
+}
+.cta-button-blue{
+  background-color: #4B5563;
+  color: #fff;
+  height: 30px;
+  width: 200px;
+  border-radius: 7px;
+ margin-top: 15px;
+  margin-left: 18%;
+  text-align: center;
+  font-size: 13px;
+}
+.cta-button-gray{
+  background-color: #ECE8E8;
+  color: black;
+  height: 30px;
+  width: 200px;
+  margin-top:5px;
+  border-radius: 7px;
+  margin-left: 18%;
+  font-size: 13px;
+}
