@@ -8,23 +8,24 @@
 .user-section{
     color: black;
     display: flex;
-    height: 140px;
+    height: 150px;
     border-bottom: 0.15px solid #B1ADAD;
     margin: 15px;
 }
 .palette-section{
    color: black;
-    height: 140px;
+    height: 150px;
     border-bottom: 0.15px solid #B1ADAD;
-    margin: 15px;
+    margin: 15px 15px 20px 25px;
+    font-size: 15px;
 }
-.palette-color-pan{
-  height:45px;
-  width:80px;
-  border:0.15px solid black;
-  border-radius:8px;
-  margin-right: 25px;
-  margin-top: 10px;
+.palette-color-pan {
+    height: 45px;
+    width: 80px;
+    border: 0.15px solid black;
+    border-radius: 8px;
+    margin-right: 25px;
+    margin-top: 25px;
 }
 .cta-button-blue{
   background-color: #4B5563;
@@ -36,6 +37,7 @@
   margin-left: 18%;
   text-align: center;
   font-size: 13px;
+  padding-top: 4px;
 }
 .cta-button-gray{
   background-color: #ECE8E8;
@@ -45,5 +47,33 @@
   margin-top:5px;
   border-radius: 7px;
   margin-left: 18%;
+  padding-top: 4px;
   font-size: 13px;
+}
+.palette-pan-name{
+    text-align: left;
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: 14px;
+}
+.buttons-section{
+  margin-top: 25px;
+}
+.card-headers{
+  text-align: left;
+  margin-left: 10px;
+}
+.user-image{
+    width: 115px;
+    height: 115px;
+    border: 0.5px solid #B1ADAD;
+    border-radius: 50%;
+}
+.skin-tone {
+    height: 56px;
+    width: 56px;
+    border-radius: 50%;
+    border: 0.5px solid #B1ADAD;
+    margin: 69px;
+    background: burlywood;
 }
