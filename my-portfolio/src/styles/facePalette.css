@@ -1,0 +1,21 @@
+.palette-section{
+   color: black;
+    height: 150px;
+    border-bottom: 0.15px solid #B1ADAD;
+    margin: 15px 15px 20px 25px;
+    font-size: 15px;
+}
+.palette-color-pan {
+    height: 45px;
+    width: 80px;
+    border: 0.15px solid black;
+    border-radius: 8px;
+    margin-right: 25px;
+    margin-top: 25px;
+}
+.palette-pan-name {
+  text-align: left;
+  margin-top: 10px;
+  margin-left: 10px;
+  font-size: 14px;
+}
