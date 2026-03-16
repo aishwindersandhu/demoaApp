@@ -86,10 +86,8 @@ const { isLoading: isLoading, showCards: showCards  }  = useSelector((state: Roo
             className={ctaButtonClass}
             onClick={() => {fileData && analyzePicture(fileData) }}
           >Analyze Picture</button>
-          {/* Display data details: Skin tone and face shape, eye shape */}
           {/* Display in card layout */}
-          {showCards && <CardComponent></CardComponent>}
-
+          {/* {showCards && <CardComponent></CardComponent>} */}
           {/*Display Left Panel - Skin detection panel*/}
           <SkinDetection></SkinDetection>
         </div>

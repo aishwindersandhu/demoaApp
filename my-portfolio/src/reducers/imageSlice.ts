@@ -1,19 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { List } from "postcss/lib/list";
+import { ImageReducerState } from "../interfaces/imageDataInterface";
 
-interface FaceDetails {
-  skinTone: string;
-  faceShape: string;
-  colorCode: string;
-  colorPalette : Array<List>;
-}
-interface ImageData {
-  data: FaceDetails;
-}
-interface ImageReducerState {
-  imageLink: string;
-  imageData: ImageData;
-}
 //Define initial state
 const initialState: ImageReducerState = {
   //state variable that holds value
