@@ -6,12 +6,12 @@ import { FacePalette } from "./facePalette";
 import '../styles/skinDetection.css';
 import { useSelector } from "react-redux";
 
-export const SkinDetection = () => {
+export const SkinDetection = ({image : string,data: any}) => {
   const imageData = useSelector((state: RootState) => state.imageReducer.imageData);
   const {colorCode, skinTone,colorPalette} = imageData.data;
   return (
     //Use reusable cards for better structure.
-    <div>
+    <div style={{marginTop:'50px'}}>
       <div className="left-panel-card">
         <UserDetails colorCode={colorCode} skinTone={skinTone}></UserDetails>
         <FacePalette colorPalette={colorPalette}></FacePalette>
