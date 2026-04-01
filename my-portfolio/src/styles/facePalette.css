@@ -1,21 +1,39 @@
-.palette-section{
-   color: black;
-    height: 150px;
-    border-bottom: 0.15px solid #B1ADAD;
-    margin: 15px 15px 20px 25px;
-    font-size: 15px;
+/* facePalette.css */
+
+.fp-section {
+    margin-bottom: 1rem;
+    padding: 15px;
 }
-.palette-color-pan {
-    height: 45px;
-    width: 80px;
-    border: 0.15px solid black;
-    border-radius: 8px;
-    margin-right: 25px;
-    margin-top: 25px;
+
+.fp-header {
+  font-size:      20px;
+  color:          var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom:  8px;
+  padding-left:   2px;
 }
-.palette-pan-name {
-  text-align: left;
-  margin-top: 10px;
-  margin-left: 10px;
-  font-size: 14px;
+
+.fp-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    margin-top: 28px;
+}
+
+.fp-swatch {
+  border-radius: 10px;
+  overflow:      hidden;
+  border:        0.5px solid var(--border-soft);
+}
+
+.fp-swatch-color { height: 44px; }
+
+.fp-swatch-label {
+  padding:        4px 0 5px;
+  text-align:     center;
+  font-size:      14px;
+  color:          var(--text-dim);
+  background:     var(--bg-card);
+  letter-spacing: 0.02em;
 }

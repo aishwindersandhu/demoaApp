@@ -2,9 +2,15 @@ import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { SkinDetection } from "../components/skinDetectionPanel";
 import { useNavigate } from "react-router-dom";
+import { useTheme } from "../ThemeContext";
 
 export const ResultsPage = () => {
   const navigate = useNavigate();
+  const { theme, toggleTheme } = useTheme();
+
+  const bg = theme === 'light' ? '#ffffff' : '#1a1a1a';
+  const color = theme === 'light' ? '#000000' : '#ffffff';
+
 
   const data = useSelector(
     (state: RootState) => state.imageReducer.imageData
@@ -27,11 +33,14 @@ export const ResultsPage = () => {
   }
 
   return (
-    <div style={{ display: "flex"}}>
-      {/* Left Panel */}
-      <SkinDetection image={imageSrc} data={data} />
-
-      {/* You can add Right Panel later */}
+    <div>
+      <button onClick={toggleTheme}>
+        Switch to {theme === 'light' ? 'dark' : 'light'} mode
+      </button>
+      <div style={{ display: "flex", background: bg, color: color }}>
+        <SkinDetection image={imageSrc} data={data} />
+      </div>
     </div>
+
   );
 }

@@ -1,27 +1,86 @@
-.user-skin-details{
-  width :50%;
-  margin-left: 30px;
+/* userDetails.css */
+
+.ud-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+    padding-left: 30px;
+    padding-top: 15px;
 }
-.user-skin-shade{
-  font-weight: 400;
-}
-.user-skin-hex{
-  font-size: 15px;
-  margin-top: 10px;
-}
-.user-undertone{
-  margin-top: 10px;
-  margin-left: 10px;
-  font-size: 13px;
-  border: 0.5px solid #B1ADAD;
-  border-radius: 8px;
-  height: 30px;
-  padding: 3px;
-  width: 150px;
-}
-.user-image{
-    width: 115px;
-    height: 115px;
-    border: 0.5px solid #B1ADAD;
+
+.ud-avatar {
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--border);
+    position: relative;
 }
+.ud-avatar svg { width: 32px; height: 32px; }
+
+.ud-avatar-ring {
+  position:      absolute;
+  inset:         -5px;
+  border-radius: 50%;
+  border:        1px solid currentColor;
+  opacity:       0.25;
+  pointer-events: none;
+}
+
+.ud-info { flex: 1; }
+
+.ud-name {
+  font-size:   20px;
+  font-weight: 500;
+  color:       var(--text-primary);
+  line-height: 1.2;
+  margin:      0 0 3px;
+}
+
+.ud-hex {
+  font-size:   15px;
+  color:       var(--text-dim);
+  font-family: monospace;
+  margin:      0 0 6px;
+}
+
+.ud-pill {
+  display:       inline-flex;
+  align-items:   center;
+  gap:           4px;
+  padding:       3px 9px;
+  border-radius: 99px;
+  font-size:     18px;
+  background:    var(--bg-card);
+  border:        0.5px solid var(--border);
+  color:         var(--text-muted);
+}
+
+.ud-dot {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+/* Theme toggle button */
+.ud-theme-btn {
+  width:           30px;
+  height:          30px;
+  border-radius:   9px;
+  background:      var(--bg-card);
+  border:          0.5px solid var(--border);
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  cursor:          pointer;
+  color:           var(--text-muted);
+  flex-shrink:     0;
+  transition:      background 0.15s;
+}
+.ud-theme-btn svg { width: 14px; height: 14px; }
+.ud-theme-btn:hover { background: var(--bg-surface); }

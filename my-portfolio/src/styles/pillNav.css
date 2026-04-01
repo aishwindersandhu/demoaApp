@@ -1,0 +1,54 @@
+/* ─── Append these to your skinDetection.css ───
+   Remove the old .sd-nav and .sd-tab rules first. */
+
+/* Pill nav row */
+.sd-pill-nav {
+  display:         flex;
+  gap:             6px;
+  padding:         0 1rem 1rem;
+  align-items:     center;
+}
+
+/* Individual pill */
+.sd-pill {
+  display:       inline-flex;
+  align-items:   center;
+  gap:           5px;
+  padding:       6px 14px;
+  border-radius: 99px;
+  font-size:     12px;
+  font-weight:   500;
+  background:    var(--bg-card);
+  border:        0.5px solid var(--border);
+  color:         var(--text-muted);
+  cursor:        pointer;
+  transition:    background 0.15s, color 0.15s, border-color 0.15s;
+  white-space:   nowrap;
+}
+
+/* Active pill — background + border set via inline style using colorCode */
+.sd-pill.on {
+  color: #fff;  /* white text always readable on any skin tone bg */
+}
+
+/* Disabled pill */
+.sd-pill.disabled {
+  opacity: 0.38;
+  cursor:  not-allowed;
+}
+.sd-pill.disabled:hover {
+  background: var(--bg-card);  /* no hover effect */
+  color:      var(--text-muted);
+}
+
+/* "Soon" badge inside disabled pill */
+.sd-pill-soon {
+  font-size:      8px;
+  font-weight:    500;
+  padding:        1px 5px;
+  border-radius:  99px;
+  background:     var(--bg-surface);
+  color:          var(--text-dim);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}

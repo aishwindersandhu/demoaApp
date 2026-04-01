@@ -1,0 +1,56 @@
+/* ─────────────────────────────────────────
+   theme.css
+   All design tokens in one place.
+   Components only ever use var(--token).
+   To switch themes, just swap the class
+   on .app-root between .dark and .light.
+───────────────────────────────────────── */
+
+/* ── Dark  :  Slate & Bone ── */
+.app-root.dark {
+  --bg-app:         #1A1C20;
+  --bg-card:        #22242A;
+  --bg-surface:     #2E3038;
+  --border:         #2E3038;
+  --border-soft:    #252830;
+
+  --text-primary:   #D8D8DC;
+  --text-muted:     #686C7A;
+  --text-dim:       #484C58;
+
+  --btn-primary-fg: #1A1C20;
+  --btn-icon-bg:    #22242A;
+
+  --warn-bg:        #22242A;
+  --warn-stroke:    #686C7A;
+  --warn-accent:    #BD8453;
+}
+
+/* ── Light  :  Parchment ── */
+.app-root.light {
+  --bg-app:         #FDFAF5;
+  --bg-card:        #F0EBE0;
+  --bg-surface:     #E8E2D8;
+  --border:         #DDD8C8;
+  --border-soft:    #EAE4D8;
+
+  --text-primary:   #18160F;
+  --text-muted:     #706860;
+  --text-dim:       #A8A090;
+
+  --btn-primary-fg: #FDFAF5;
+  --btn-icon-bg:    #F0EBE0;
+
+  --warn-bg:        #F0EBE0;
+  --warn-stroke:    #A8A090;
+  --warn-accent:    #8B5E3C;
+}
+
+/* ── Base resets that apply to both themes ── */
+.app-root {
+  min-height:  100vh;
+  background:  var(--bg-app);
+  color:       var(--text-primary);
+  transition:  background 0.25s ease, color 0.25s ease;
+  font-family: system-ui, -apple-system, sans-serif;
+}
