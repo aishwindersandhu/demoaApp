@@ -23,15 +23,15 @@ export const FacePalette = ({ colorPalette }: FaceDetails) => {
   // We derive the 4th (highlight) from the base (index 1)
   const swatches = [
     ...colorPalette,
-    deriveHighlight(colorPalette[1] ?? '#BD8453'),
+    //  deriveHighlight(colorPalette[1] ?? '#BD8453'),
   ];
 
   return (
     <div className="fp-section">
       <div className="fp-header">Your palette</div>
-      <div className="fp-grid">
+      <div>
         {swatches.map((color, index) => (
-          <div key={index} className="fp-swatch">
+          <div key={index} style={{display:'flex',margin:'10px 15px'}}>
             <div
               className="fp-swatch-color"
               style={{ background: color }}

@@ -5,6 +5,7 @@
    To switch themes, just swap the class
    on .app-root between .dark and .light.
 ───────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=DM+Sans:wght@400;500&display=swap');
 
 /* ── Dark  :  Slate & Bone ── */
 .app-root.dark {
@@ -52,5 +53,5 @@
   background:  var(--bg-app);
   color:       var(--text-primary);
   transition:  background 0.25s ease, color 0.25s ease;
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: 'DM Sans', system-ui, sans-serif;
 }

@@ -1,39 +1,48 @@
 /* facePalette.css */
 
 .fp-section {
-    margin-bottom: 1rem;
-    padding: 15px;
+  margin-bottom: 1rem;
+  padding: 15px;
 }
 
 .fp-header {
-  font-size:      20px;
-  color:          var(--text-dim);
+  font-size: 20px;
+  color: var(--text-dim);
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  margin-bottom:  8px;
-  padding-left:   2px;
+  margin-bottom: 8px;
+  padding-left: 2px;
 }
 
 .fp-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 6px;
-    margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-top: 28px;
 }
 
 .fp-swatch {
-  border-radius: 10px;
-  overflow:      hidden;
-  border:        0.5px solid var(--border-soft);
+  border-radius: 5px;
+  overflow: hidden;
+  border: 0.5px solid var(--border-soft);
+  width: 60px;
+  height: 35px;
+  margin: 15px;
 }
 
-.fp-swatch-color { height: 44px; }
+.fp-swatch-color {
+    height: 45px;
+    width: 65px;
+    border-radius: 10px;
+    margin-left: 10px;
+}
 
 .fp-swatch-label {
-  padding:        4px 0 5px;
-  text-align:     center;
-  font-size:      14px;
-  color:          var(--text-dim);
-  background:     var(--bg-card);
-  letter-spacing: 0.02em;
+    padding: 4px 0 5px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--text-dim);
+    background: var(--bg-card);
+    letter-spacing: 0.02em;
+    margin: 10px 0px 10px 25px;
 }
