@@ -8,8 +8,8 @@ export const ResultsPage = () => {
   const navigate = useNavigate();
   const { theme, toggleTheme } = useTheme();
 
-  const bg = theme === 'light' ? '#ffffff' : '#1a1a1a';
-  const color = theme === 'light' ? '#000000' : '#ffffff';
+  const bg = theme === 'light' ? '#F7F4EF' : '#1a1a1a';
+  const color = theme === 'light' ? '#000000' : '#F7F4EF';
 
 
   const data = useSelector(

@@ -1,7 +1,8 @@
 .left-panel-card {
     height: 100%;
     width: 300px;
-    border-right: 0.25px solid #B1ADAD;
+    border-right: 0.5px solid var( --border-soft);
+    background-color: var(--bg-app);
     margin-left: 15px;
 }
 .user-section {

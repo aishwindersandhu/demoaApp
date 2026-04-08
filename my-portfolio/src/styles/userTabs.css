@@ -10,9 +10,9 @@
     cursor: pointer;
 }
 .tab-pill-selected{
-  background-color: #22242A;
+  background-color: var(--bg-card);
   color: #BD8453;
 }
 .tab-pills:hover{
-  background-color: #22242A;
+  background-color: var(--bg-card);
 }
