@@ -3,6 +3,7 @@ import { useState } from "react";
 import { RootState } from '../redux/store';
 import { UserDetails } from "./userDetails";
 import { FacePalette } from "./facePalette";
+import { UserTabs } from "./UserTabs";
 import '../styles/skinDetection.css';
 import { useSelector } from "react-redux";
 
@@ -12,14 +13,11 @@ export const SkinDetection = ({image : string,data: any}) => {
   const mockColorPalette =["#313131","#FF00FF","#EFEFEF","#FFD700"]
   return (
     //Use reusable cards for better structure.
-    <div style={{margin:'50px 0px 50px 0px',width:'1500px'}}>
+    <div style={{width:'1500px', height:'600px'}}>
       <div className="left-panel-card">
         <UserDetails colorCode={colorCode} skinTone={skinTone}></UserDetails>
         <FacePalette colorPalette={mockColorPalette}></FacePalette>
-        {/* <div className="buttons-section">
-          <div className="cta-button-blue">Generate Analysis</div>
-          <div className="cta-button-gray">Save Profile</div>
-        </div> */}
+        <UserTabs></UserTabs>
       </div>
       {/* Warm Tone suggestions */}
       {/* cool tone suggestions */}

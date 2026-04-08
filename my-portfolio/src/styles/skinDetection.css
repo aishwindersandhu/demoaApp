@@ -1,11 +1,9 @@
 .left-panel-card {
-  height: 450px;
-  width: 350px;
-  border: 0.25px solid #B1ADAD;
-  border-radius: 10px;
-  margin-left: 35px;
+    height: 100%;
+    width: 300px;
+    border-right: 0.25px solid #B1ADAD;
+    margin-left: 15px;
 }
-
 .user-section {
   color: black;
   display: flex;

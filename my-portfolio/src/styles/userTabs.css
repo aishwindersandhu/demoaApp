@@ -1,0 +1,18 @@
+.tab-pills{
+    margin-left: 40px;
+    width: 80%;
+    height: 35px;
+    font-size: 15px;
+    padding: 6px 15px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    color: #686C7A;
+    cursor: pointer;
+}
+.tab-pill-selected{
+  background-color: #22242A;
+  color: #BD8453;
+}
+.tab-pills:hover{
+  background-color: #22242A;
+}

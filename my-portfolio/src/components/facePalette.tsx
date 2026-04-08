@@ -28,7 +28,6 @@ export const FacePalette = ({ colorPalette }: FaceDetails) => {
 
   return (
     <div className="fp-section">
-      <div className="fp-header">Your palette</div>
       <div>
         {swatches.map((color, index) => (
           <div key={index} style={{display:'flex',margin:'10px 15px'}}>

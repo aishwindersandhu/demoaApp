@@ -19,14 +19,14 @@ export const UserDetails = ({ colorCode, skinTone }: FaceDetails) => {
       <div className="ud-info">
         <h2 className="ud-name">{skinTone}</h2>
         <p className="ud-hex">{colorCode}</p>
-        <span className="ud-pill">
+        <p className="ud-pill">
           <span className="ud-dot" style={{ background: colorCode }} />
           Warm undertone
-        </span>
+        </p>
       </div>
 
       {/* Theme toggle lives here, top-right of the hero */}
-      <button
+      {/* <button
         className="ud-theme-btn"
         onClick={toggleTheme}
         aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
@@ -41,7 +41,7 @@ export const UserDetails = ({ colorCode, skinTone }: FaceDetails) => {
             <path d="M12 8.8A5 5 0 1 1 7.2 4a4 4 0 0 0 4.8 4.8z" />
           </svg>
         )}
-      </button>
+      </button> */}
     </div>
   );
 };
