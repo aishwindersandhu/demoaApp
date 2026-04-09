@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   //state variable that holds value
   isLoading: false,
-  showCards: false
+  showCards: false,
+  showBoard:''
 }
 const utilsReducer = createSlice({
   name: 'utils',
@@ -15,11 +16,14 @@ const utilsReducer = createSlice({
     },
     displayCards:(state,action) =>{
       state.showCards = action.payload
+    },
+    displayBoard:(state,action) =>{
+      state.showBoard = action.payload
     }
   }
 });
 
 //export actions
-export const { displayLoader,displayCards} = utilsReducer.actions;
+export const { displayLoader,displayCards,displayBoard} = utilsReducer.actions;
 //export reducer
 export default utilsReducer.reducer;

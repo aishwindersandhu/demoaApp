@@ -39,8 +39,7 @@
 .fp-swatch-label {
     text-align: center;
     font-size: 14px;
-    color: var(--text-dim);
-    background: var(--bg-card);
+    color: var( --text-muted);
     letter-spacing: 0.02em;
     margin: 5px 0px 10px 15px;
 }

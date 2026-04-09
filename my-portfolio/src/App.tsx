@@ -12,6 +12,7 @@ function App() {
           <Routes>
             {/* <Route path="/" element={<UploadImage />} /> */}
             <Route path="/" element={<ResultsPage />} />
+
           </Routes>
         </BrowserRouter>
       </div>

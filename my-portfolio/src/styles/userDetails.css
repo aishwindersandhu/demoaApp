@@ -51,13 +51,14 @@
 }
 
 .ud-pill {
-  border-radius: 99px;
-  margin: 20px 0px 35px 0px;
-  font-size: 15px;
-  background: var(--bg-card);
-  border: 0.5px solid var(--border);
-  color: var(--text-muted);
-}
+    border-radius: 99px;
+    margin: 20px 20px 35px 0px;
+    font-size: 15px;
+    background: var(--bg-card);
+    border: 0.5px solid var(--border);
+    color: var(--text-muted);
+    padding: 0px 15px;
+} 
 
 .ud-dot {
   width: 15px;
