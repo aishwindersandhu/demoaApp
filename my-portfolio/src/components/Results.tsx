@@ -3,7 +3,6 @@ import { RootState } from "../redux/store";
 import { SkinDetection } from "../components/skinDetectionPanel";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "../ThemeContext";
-import { ColorAnalysis } from "./colorAnalysis";
 
 export const ResultsPage = () => {
   const navigate = useNavigate();
@@ -40,7 +39,6 @@ export const ResultsPage = () => {
       </button>
       <div style={{ display: "flex", background: bg, color: color }}>
         <SkinDetection image={imageSrc} data={data} />
-        <ColorAnalysis></ColorAnalysis>
       </div>
     </div>
 

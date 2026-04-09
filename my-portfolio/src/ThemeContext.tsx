@@ -16,7 +16,7 @@ export function ThemeProvider({children} : {children: React.ReactNode}){
   )
   return (
     <ThemeContext.Provider value={{theme, toggleTheme}} >
-     <div  className={`app-root ${theme}`}>
+     <div  className={`app-root ${theme}`} style={{margin:'30px'}}>
        {children}
      </div>
     </ThemeContext.Provider>
