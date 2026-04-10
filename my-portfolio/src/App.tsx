@@ -10,9 +10,8 @@ function App() {
       <div className='app-body'>
         <BrowserRouter>
           <Routes>
-            {/* <Route path="/" element={<UploadImage />} /> */}
-            <Route path="/" element={<ResultsPage />} />
-
+            <Route path="/" element={<UploadImage />} />
+            <Route path="/results" element={<ResultsPage />} />
           </Routes>
         </BrowserRouter>
       </div>

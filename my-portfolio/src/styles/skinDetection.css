@@ -55,3 +55,24 @@
   margin: 69px;
   background: burlywood;
 }
+.theme-toggle{
+    display: flex;
+    gap: 10px;
+    border-radius: 7px;
+    background: transparent;
+    border: 0.5px solid var(--border-soft);
+    color: var(--text-dim);
+    font-size: 15px;
+    cursor: pointer;
+    width: 80%;
+    height: 40px;
+    margin-left: 40px;
+    margin-top: 40px;
+}
+.theme-toggle:hover{
+  border: none;
+  background-color: var(--bg-card);
+}
+.theme-toggle:focus{
+  outline: none;
+}

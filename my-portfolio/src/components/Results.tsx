@@ -6,7 +6,7 @@ import { useTheme } from "../ThemeContext";
 
 export const ResultsPage = () => {
   const navigate = useNavigate();
-  const { theme, toggleTheme } = useTheme();
+  const { theme } = useTheme();
 
   const bg = theme === 'light' ? '#F7F4EF' : '#1a1a1a';
   const color = theme === 'light' ? '#000000' : '#F7F4EF';
@@ -16,11 +16,8 @@ export const ResultsPage = () => {
     (state: RootState) => state.imageReducer.imageData
   );
 
-  const imageSrc = useSelector(
-    (state: RootState) => state.imageReducer.imageLink
-  );
 
-  // ⚠️ Handle refresh case
+  //Handle refresh case
   if (!data) {
     return (
       <div style={{ padding: "20px" }}>
@@ -34,11 +31,8 @@ export const ResultsPage = () => {
 
   return (
     <div>
-      <button onClick={toggleTheme}>
-        Switch to {theme === 'light' ? 'dark' : 'light'} mode
-      </button>
       <div style={{ display: "flex", background: bg, color: color }}>
-        <SkinDetection image={imageSrc} data={data} />
+        <SkinDetection /> 
       </div>
     </div>
 

@@ -1,4 +1,22 @@
 .card-container{
   background-color: var(--btn-primary-fg);
   width: 1200px;
+  padding: 20px;
+}
+.analysis-card-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+ .card-main-title{
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+.card-main-sub{
+    font-size: 14px;
+    color: var(--text-dim);
+    margin-top: 1px;
 }
