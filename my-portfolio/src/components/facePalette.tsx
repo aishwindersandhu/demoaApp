@@ -1,4 +1,3 @@
-import React from "react";
 import { FaceDetails } from "../interfaces/imageDataInterface";
 import '../styles/facePalette.css';
 

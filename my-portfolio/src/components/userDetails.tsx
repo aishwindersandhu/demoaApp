@@ -1,7 +1,9 @@
-import { FaceDetails } from "../interfaces/imageDataInterface";
 import '../styles/userDetails.css';
-
-export const UserDetails = ({ colorCode, skinTone }: FaceDetails) => {
+interface UserDetailsProperties{
+  colorCode: string;
+  skinTone: string;
+}
+export const UserDetails = ({ colorCode, skinTone }: UserDetailsProperties) => {
 
   return (
     <div className="ud-row">

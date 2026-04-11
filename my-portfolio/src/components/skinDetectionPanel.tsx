@@ -12,7 +12,7 @@ export const SkinDetection = () => {
   const { theme, toggleTheme } = useTheme();
 
   const { colorCode, skinTone, colorPalette } = imageData.data;
-  const mockColorPalette = ["#313131", "#FF00FF", "#EFEFEF", "#FFD700"]
+  // const mockColorPalette = ["#313131", "#FF00FF", "#EFEFEF", "#FFD700"]
   return (
     //Use reusable cards for better structure.
     <div style={{ width: '1600px', height: '600px', display: 'flex' }}>
