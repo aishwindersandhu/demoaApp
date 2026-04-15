@@ -1,0 +1,12 @@
+
+.dashboard-card-wrapper{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+}
+.dashboard-card{
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+  height: 140px;
+  border-radius: 10px;
+  border: 0.5px solid var(--border);
+}
