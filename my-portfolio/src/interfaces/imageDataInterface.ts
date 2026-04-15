@@ -5,6 +5,7 @@ export interface FaceDetails {
   faceShape: string;
   colorCode: string;
   colorPalette : Array<List>;
+  profile: Object;
 }
 export interface ImageData {
   data: FaceDetails;

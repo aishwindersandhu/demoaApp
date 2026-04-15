@@ -10,7 +10,15 @@ const initialState: ImageReducerState = {
       skinTone: '',
       colorCode:'',
       faceShape:'',
-      colorPalette: []
+      colorPalette: [],
+      profile:{
+        undertone: '',
+        cool_palette:[],
+        dark_palette:[],
+        warm_palette:[],
+        jewel_tones:[],
+        skinTone:''
+      }
     }
   },
 }

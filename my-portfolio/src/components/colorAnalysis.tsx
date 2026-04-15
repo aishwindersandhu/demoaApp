@@ -4,8 +4,10 @@ import '../styles/colorAnalysis.css';
 import { AnalysisCard } from "./AnalysisCard";
 import { VerticalStrips } from "./Cards/dashboardCard";
 
+
 export const ColorAnalysis = () => {
   const { showBoard } = useSelector((state: RootState) => state.utilsReducer.showBoard);
+
   return (<div className="card-container">
    <div className="card-main-title">Colour analysis</div>
    <div className="card-main-sub">Based on your skin tone</div>
