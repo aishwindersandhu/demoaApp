@@ -1,12 +1,58 @@
-
-.dashboard-card-wrapper{
+.dashboard-card-wrapper {
   display: grid;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(3, 1fr);
 }
-.dashboard-card{
+
+.dashboard-card {
   background-color: var(--bg-card);
   color: var(--text-primary);
-  height: 140px;
+  height: 180px;
   border-radius: 10px;
   border: 0.5px solid var(--border);
+  margin: 0px 10px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.dashboard-card:hover {
+  transform: scale(1.012);
+}
+
+.color-strip {
+  flex: 1;
+  width: 30px;
+  height: 140px;
+  position:relative;
+}
+.color-strip:hover{
+  flex:2.5;
+}
+.color-strip-name{
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+}
+.color-strip-hex{
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.6);
+}
+.color-strip-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px 10px 10px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.55));
+    opacity: 0;
+    transform: translateY(4px);
+    transition: all 0.2s;
+}
+.color-strip:hover .color-strip-info {
+    opacity: 1;
+    transform: translateY(0);
+}
+.color-type-strip{
+    float: left;
+    padding-left: 10px;
+    padding-top: 5px;
 }
