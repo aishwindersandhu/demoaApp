@@ -46,6 +46,16 @@
     opacity: 0;
     transform: translateY(4px);
     transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.color-strip-hex-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px;
 }
 .color-strip:hover .color-strip-info {
     opacity: 1;
