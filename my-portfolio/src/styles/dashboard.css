@@ -25,7 +25,7 @@
   position:relative;
 }
 .color-strip:hover{
-  flex:2.5;
+  flex:4;
 }
 .color-strip-name{
     font-size: 14px;

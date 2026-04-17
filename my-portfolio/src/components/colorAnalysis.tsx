@@ -2,11 +2,15 @@ import { RootState } from "../redux/store";
 import { useSelector } from "react-redux";
 import '../styles/colorAnalysis.css';
 import { AnalysisCard } from "./AnalysisCard";
-import { VerticalStrips } from "./Cards/dashboardCard";
+import { VerticalStrips } from "./Cards/VerticalStrip";
+import '../styles/dashboard.css';
 
 
 export const ColorAnalysis = () => {
   const { showBoard } = useSelector((state: RootState) => state.utilsReducer.showBoard);
+  const imageData = useSelector((state: RootState) => state.imageReducer.imageData);
+  const {warm_palette,cool_palette,dark_palette} = imageData.data.profile;
+
 
   return (<div className="card-container">
    <div className="card-main-title">Colour analysis</div>
@@ -17,6 +21,10 @@ export const ColorAnalysis = () => {
       <AnalysisCard value={6} title={'Avoid Colors'}></AnalysisCard>
     </div>
      {/*TO-DO: Make it a fun way to show random cards */}
-      <VerticalStrips></VerticalStrips>
+      <div className="dashboard-card-wrapper">
+        <VerticalStrips palette={warm_palette} title={'Warm Colors'}></VerticalStrips>
+      <VerticalStrips palette={cool_palette} title={'Cool Colors'}></VerticalStrips>
+      <VerticalStrips palette={dark_palette} title={'Dark Colors'}></VerticalStrips>
+      </div>
   </div>)
 }
