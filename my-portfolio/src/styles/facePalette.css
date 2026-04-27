@@ -31,15 +31,50 @@
 }
 
 .fp-swatch-color {
-    height: 35px;
-    width: 50px;
+    height: 60px;
+    width: 60px;
     border-radius: 10px;
     margin-left: 10px;
+    position: relative;        /* add this */
+    overflow: hidden;          /* add this */
+}
+
+/* shine — top-left light catch */
+.fp-swatch-color::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.35) 0%,
+        rgba(255, 255, 255, 0.08) 40%,
+        rgba(255, 255, 255, 0.00) 100%
+    );
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* inner rim — product-like edge */
+.fp-swatch-color::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    pointer-events: none;
+    z-index: 2;
 }
 .fp-swatch-label {
     text-align: center;
-    font-size: 14px;
+    display: flex;
+    font-size: 15px;
     color: var( --text-muted);
     letter-spacing: 0.02em;
-    margin: 5px 0px 10px 15px;
+    margin: 15px 0px 10px 15px;
+}
+.swatch-box {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
 }

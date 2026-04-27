@@ -11,13 +11,13 @@ export const SkinDetection = () => {
   const imageData = useSelector((state: RootState) => state.imageReducer.imageData);
   const { theme, toggleTheme } = useTheme();
 
-  const { colorCode, skinTone, colorPalette } = imageData.data;
+  const { colorCode, skinTone, colorPalette,profile } = imageData.data;
   // const mockColorPalette = ["#313131", "#FF00FF", "#EFEFEF", "#FFD700"]
   return (
     //Use reusable cards for better structure.
-    <div style={{ width: '1600px', height: '600px', display: 'flex' }}>
+    <div style={{ width: '1600px', height: '800px', display: 'flex' }}>
       <div className="left-panel-card">
-        <UserDetails colorCode={colorCode} skinTone={skinTone}></UserDetails>
+        <UserDetails colorCode={colorCode} skinTone={skinTone} undertone={profile.undertone}></UserDetails>
         <FacePalette colorPalette={colorPalette}></FacePalette>
         <UserTabs></UserTabs>
         <button className="theme-toggle" onClick={toggleTheme}>

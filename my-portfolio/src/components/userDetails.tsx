@@ -2,8 +2,9 @@ import '../styles/userDetails.css';
 interface UserDetailsProperties{
   colorCode: string;
   skinTone: string;
+  undertone: string;
 }
-export const UserDetails = ({ colorCode, skinTone }: UserDetailsProperties) => {
+export const UserDetails = ({ colorCode, skinTone,undertone }: UserDetailsProperties) => {
 
   return (
     <div className="ud-row">
@@ -20,8 +21,8 @@ export const UserDetails = ({ colorCode, skinTone }: UserDetailsProperties) => {
         <h2 className="ud-name">{skinTone}</h2>
         <p className="ud-hex">{colorCode}</p>
         <p className="ud-pill">
-          <span className="ud-dot" style={{ background: colorCode }} />
-          Warm undertone
+          <span className="ud-dot" style={{ background: colorCode}} />
+          {undertone}
         </p>
       </div>
     </div>
