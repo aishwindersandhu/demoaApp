@@ -3,7 +3,8 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const imageApi = createApi({
   reducerPath: 'imageAPI',
   baseQuery: fetchBaseQuery(
-    { baseUrl: 'http://127.0.0.1:8000' }
+    //{ baseUrl: 'http://127.0.0.1:8000' }
+     { baseUrl: 'https://faceapp-1-p1do.onrender.com' }
   ),
   endpoints: (builder) => ({
     //builder.query takes return type and parameters only for GET Requests\
