@@ -1,10 +1,11 @@
 # Face Analyser 
-- This Project is a demonstration of detetcing an Image provided by the user for their skin tone detection.
-- This Project is built using React, Typescript, ReduxJs Toolkit and TailwindCSS 
+- This Project is a demonstration of detetcing an Image provided by the user for their skin tone detection, undertone detection and eventually as a result suggesting colors that suit an individuals undertone across different Panels.
+- This Project is built using React, Typescript, ReduxJs Toolkit and TailwindCSS.
 - This Project has used extensions such as React WebCam for capturing user's image.
+- The current version is not mobile friendly and is only built keeping Dashboard Layout.
 
 # Installation
-- To run this project, clone the repo : https://github.com/aishwindersandhu/demoaApp/tree/FaceCapture-Component 
+- To run this project, clone the repo : https://github.com/aishwindersandhu/demoaApp/tree/SkinDetection-Panel  
 - Run `npm install`  to install all dependencies and packages.
 
 # Run locally
@@ -17,11 +18,12 @@ the /api folder.
 
 # TO DO:
 - Proper Error Handling with a fallback UI
-- Improvise on UI
+- Improvise on UI for Image Upload and Face Capturing
 - Optimsie code and work on performance
+- Build the responsive version
 - Unit test cases for the components
-- The Color Naming is currently hardcoded and would need a classifying logic on the backend. Currently displaying only the color being received from API endpoint.
-- As part of the future scope, I'm looking to stage this on a server too.
+- Add more animations for UX
+- Alot of UI/UX inspiration has been taken from Pinterest and their layout.
 
 # Current Implementation
 - Detection of skin color from forehead
