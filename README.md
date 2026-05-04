@@ -1,4 +1,4 @@
-# Tonly — Frontend
+# Frontend — Skin Tone & Colour Analysis
 
 A React + TypeScript web app for AI-powered skin tone analysis. Upload or capture a photo to receive your skin tone, undertone, and a full personalised colour palette.
 
