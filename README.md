@@ -21,7 +21,7 @@ A React + TypeScript web app for AI-powered skin tone analysis. Upload or captur
 **Clone the repo**
 ```bash
 git clone https://github.com/aishwindersandhu/demoaApp
-cd demoaApp
+cd my-portfolio
 git checkout SkinDetection-Panel
 ```
 
@@ -62,7 +62,7 @@ npm run dev
 >Upload Screen
 Upload a photo or capture one directly via webcam. The image is previewed before analysis is triggered. 
 
->Analysis Result - Sidebar
+## Analysis Result - Sidebar
 After analysis, the sidebar displays your detected skin tone hex, depth label, undertone classification, and your personalised makeup palette: Conceal, Base, Contour, and Highlight — each shade derived mathematically from your skin's LAB values.
 - Slate/Bone (Dark Theme)
 ![alt text](image.png) 
@@ -71,7 +71,7 @@ After analysis, the sidebar displays your detected skin tone hex, depth label, u
 
 The app ships with two themes switchable from the sidebar. Both use the same underlying CSS token system — only the token values change between themes.
 
->Colour Palettes
+## Colour Palettes
 Three palette categories are displayed in the Colours tab: Warm Colors, Cool Colors, and Dark Colors. Each palette contains 6 shades derived from the person's skin L value, with hues adjusted for their undertone.
 
 ![alt text](Dark-color-strips.jpg)
@@ -80,7 +80,7 @@ Three palette categories are displayed in the Colours tab: Warm Colors, Cool Col
 - Cool Colors — cool-leaning tones: navy, slate blue, emerald, plum, lavender
 - Dark Colors — deep universal wearables: wine, burgundy, forest green, midnight blue, deep plum
 
->Color Swatch interaction
+## Color Swatch interaction
 ![alt text](color-strip-UX.jpg)
 
 Hovering a swatch reveals the colour name and hex code with a copy button.
