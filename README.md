@@ -1,45 +1,96 @@
-# Face Analyser 
-- This Project is a demonstration of detetcing an Image provided by the user for their skin tone detection, undertone detection and eventually as a result suggesting colors that suit an individuals undertone across different Panels.
-- This Project is built using React, Typescript, ReduxJs Toolkit and TailwindCSS.
-- This Project has used extensions such as React WebCam for capturing user's image.
-- The current version is not mobile friendly and is only built keeping Dashboard Layout.
+# Tonly — Frontend
 
-# Installation
-- To run this project, clone the repo : https://github.com/aishwindersandhu/demoaApp/tree/SkinDetection-Panel  
-- Run `npm install`  to install all dependencies and packages.
+A React + TypeScript web app for AI-powered skin tone analysis. Upload or capture a photo to receive your skin tone, undertone, and a full personalised colour palette.
 
-# Run locally
-- To run the project locally, use `npm run dev` command.
+> UI/UX design inspired by Pinterest's masonry layout and aesthetic.
 
-# API connection
-- The project consumes API hosted on the respective server and is connected and hooked to the API in 
-the /api folder.
-- The project is still under development and might not be very well error prone or edge case protected.
+---
 
-# TO DO:
-- Proper Error Handling with a fallback UI
-- Improvise on UI for Image Upload and Face Capturing
-- Optimsie code and work on performance
-- Build the responsive version
-- Unit test cases for the components
-- Add more animations for UX
-- Alot of UI/UX inspiration has been taken from Pinterest and their layout.
+## Tech Stack
 
-# Current Implementation
-- Detection of skin color from forehead
- ![Different-region-1](https://github.com/user-attachments/assets/fe67b1d3-b2a2-4ebc-9d81-1b718364f120) 
-- Detection of skin color from cheeks in different light
+- **React** + **TypeScript**
+- **Redux Toolkit** — global state for image and analysis result
+- **Vite** — build tooling
+- **TailwindCSS** — utility-first styling
+- **react-webcam** — in-browser camera capture
 
- ![colorpalette_success_1](https://github.com/user-attachments/assets/1b3bc284-c6e1-485b-b0d8-f85401d10e1c)
-- Detection of skin color from cheeks, played around with lighting to get few shades darker
-  ![improper-lightning-failure#2](https://github.com/user-attachments/assets/e4ca76f2-0b31-4b64-aa17-c6c66cc123f7) 
-- Detetction of skin color from an uploaded image with vibrant color in space
- ![uploadedImage](https://github.com/user-attachments/assets/4afdce70-5e3e-481e-ad7a-b28d1387574d) 
-- Reference of hex colors from google
- ![uploadImage2](https://github.com/user-attachments/assets/7fc85b73-e253-4755-bb35-39b2e5f61662) 
+---
+
+## Getting Started
+
+**Clone the repo**
+```bash
+git clone https://github.com/aishwindersandhu/demoaApp
+cd demoaApp
+git checkout SkinDetection-Panel
+```
+
+**Install dependencies**
+```bash
+npm install
+```
+
+**Run locally**
+```bash
+npm run dev
+```
 
 
+---
 
+## Features
 
+- Upload a photo or capture one via webcam
+- Displays detected skin tone hex and depth label
+- Displays undertone of the individual
+- Colour palette tabs: warm, cool, dark, jewel tones
+- Dual theme: Parchment (light) and Slate & Bone (dark)
+- Playfair Display + DM Sans typography
 
+---
 
+## Current Limitations
+
+- Desktop-only layout — mobile responsive version is under development
+- Error handling is minimal — edge cases not fully covered
+- The app is under active development
+- The app generates hex color codes and not a proper naming convention.
+---
+
+## Current Implementation
+
+>Upload Screen
+Upload a photo or capture one directly via webcam. The image is previewed before analysis is triggered. 
+
+>Analysis Result - Sidebar
+After analysis, the sidebar displays your detected skin tone hex, depth label, undertone classification, and your personalised makeup palette: Conceal, Base, Contour, and Highlight — each shade derived mathematically from your skin's LAB values.
+- Slate/Bone (Dark Theme)
+![alt text](image.png) 
+- Parchment (Light Theme)
+![alt text](light-1.jpg)
+
+The app ships with two themes switchable from the sidebar. Both use the same underlying CSS token system — only the token values change between themes.
+
+>Colour Palettes
+Three palette categories are displayed in the Colours tab: Warm Colors, Cool Colors, and Dark Colors. Each palette contains 6 shades derived from the person's skin L value, with hues adjusted for their undertone.
+
+![alt text](Dark-color-strips.jpg)
+
+- Warm Colors — earthy tones: camel, rust, burnt orange, mustard, warm olive
+- Cool Colors — cool-leaning tones: navy, slate blue, emerald, plum, lavender
+- Dark Colors — deep universal wearables: wine, burgundy, forest green, midnight blue, deep plum
+
+>Color Swatch interaction
+![alt text](color-strip-UX.jpg)
+
+Hovering a swatch reveals the colour name and hex code with a copy button.
+
+## Roadmap
+
+- [ ] Mobile responsive layout
+- [ ] Improved upload and webcam capture UI
+- [ ] Proper error handling with fallback UI
+- [ ] Additional colour palette categories
+- [ ] More UI animations for smoother UX
+- [ ] Unit tests for key components
+- [ ] Performance optimisation

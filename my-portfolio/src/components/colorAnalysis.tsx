@@ -7,7 +7,6 @@ import '../styles/dashboard.css';
 
 
 export const ColorAnalysis = () => {
-  const { showBoard } = useSelector((state: RootState) => state.utilsReducer.showBoard);
   const imageData = useSelector((state: RootState) => state.imageReducer.imageData);
   const {warm_palette,cool_palette,dark_palette} = imageData.data.profile;
 

@@ -4,7 +4,7 @@ import '../styles/copyButton.css';
 export const CopyButton = ({hex}: {hex:string}) =>{
   const [copied, setCopied] = useState(false)
 
-  const handleCopy = async (e) => {
+  const handleCopy = async (e:React.MouseEvent) => {
     e.stopPropagation()
     await navigator.clipboard.writeText(hex)
     setCopied(true)
