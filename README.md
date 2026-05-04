@@ -64,10 +64,15 @@ Upload a photo or capture one directly via webcam. The image is previewed before
 
 ## Analysis Result - Sidebar
 After analysis, the sidebar displays your detected skin tone hex, depth label, undertone classification, and your personalised makeup palette: Conceal, Base, Contour, and Highlight — each shade derived mathematically from your skin's LAB values.
-- Slate/Bone (Dark Theme)
-![alt text](image.png) 
-- Parchment (Light Theme)
-![alt text](light-1.jpg)
+- **Slate & Bone (Dark theme)**
+
+  ![Dark Theme](image.png) 
+
+- **Parchment (Light theme)**
+
+  ![Light Theme](light-1.jpg)
+
+
 
 The app ships with two themes switchable from the sidebar. Both use the same underlying CSS token system — only the token values change between themes.
 
