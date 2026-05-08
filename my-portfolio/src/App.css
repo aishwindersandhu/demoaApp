@@ -1,6 +1,16 @@
 #root {
   max-width: 1280px;
+  margin: 0 auto;      
   text-align: center;
+}
+
+.app-body {
+  background-color: #F7F4EF;  
+  min-height: 100vh;           
+  width: 100%;                  
+  display: flex;
+  justify-content: center;  
+  align-items: flex-start;  
 }
 
 .logo {
@@ -38,12 +48,7 @@
 .read-the-docs {
   color: #888;
 }
-.app-body{
-  background-color: #ffff;
-  height: 1000px;
-  /* For full width */
-  width: 1600px; 
-}
+
 .header{
     color: black;
     font-size: 25px;
