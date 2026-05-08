@@ -1,0 +1,121 @@
+.loading-screen {
+  min-height: 100vh;
+  background: var(--bg-page, #F7F4EF);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  padding: 48px 24px;
+  font-family: 'DM Sans', system-ui, sans-serif;
+}
+
+.loading-spinner {
+  position: relative;
+  width: 72px;
+  height: 72px;
+}
+
+.loading-spinner__svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.loading-spinner__arc {
+  animation: spin-dash 2s ease infinite;
+}
+
+.loading-spinner__icon {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.loading-text__heading {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: #2C1810;
+  margin: 0;
+  text-align: center;
+}
+
+.loading-text__sub {
+  font-size: 13px;
+  color: #A08070;
+  margin: 0;
+  text-align: center;
+  max-width: 280px;
+  line-height: 1.6;
+}
+
+.loading-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 320px;
+}
+
+.loading-step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: #FDFAF7;
+  border: 1px solid #EDE8E1;
+  border-radius: 10px;
+  opacity: 0;
+  animation: fadeSlideIn 0.4s ease forwards;
+}
+
+.loading-step__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #8B6355;
+  flex-shrink: 0;
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+.loading-step__label {
+  font-size: 13px;
+  color: #7A6558;
+}
+
+.loading-tone-strip {
+  display: flex;
+  border-radius: 6px;
+  overflow: hidden;
+  width: 200px;
+  height: 6px;
+}
+
+.loading-tone-strip__swatch {
+  flex: 1;
+}
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 1; }
+}
+
+@keyframes spin-dash {
+  from { stroke-dashoffset: 188; }
+  to   { stroke-dashoffset: 0; }
+}
