@@ -1,4 +1,4 @@
-import "../styles/LoadingScree.css"
+import "../styles/LoadingScreen.css"
 
 const TONE_STRIP = ["#F5CBA7", "#E59866", "#CA6F1E", "#A04000", "#784212", "#4A235A", "#2C1810"];
 

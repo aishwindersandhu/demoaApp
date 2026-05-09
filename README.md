@@ -62,6 +62,14 @@ npm run dev
 >Upload Screen
 Upload a photo or capture one directly via webcam. The image is previewed before analysis is triggered. 
 
+- **Uploading an Image**
+
+  ![alt text](uploadScren.jpg)
+
+- **Screen Loading**
+  ![alt text](loading-screen.jpg)
+
+
 ## Analysis Result - Sidebar
 After analysis, the sidebar displays your detected skin tone hex, depth label, undertone classification, and your personalised makeup palette: Conceal, Base, Contour, and Highlight — each shade derived mathematically from your skin's LAB values.
 - **Slate & Bone (Dark theme)**
