@@ -80,6 +80,13 @@ After analysis, the sidebar displays your detected skin tone hex, depth label, u
 
   ![Light Theme](light-1.jpg)
 
+- **Toggle button**
+  <img width="286" height="63" alt="image" src="https://github.com/user-attachments/assets/ccb87b89-dbaf-4a08-a54e-7d055f0cab31" />
+
+  <img width="297" height="52" alt="toggle-btn-dark" src="https://github.com/user-attachments/assets/a8307f6c-398e-4e2c-9166-3f2a310446da" />
+
+
+
 
 
 The app ships with two themes switchable from the sidebar. Both use the same underlying CSS token system — only the token values change between themes.
