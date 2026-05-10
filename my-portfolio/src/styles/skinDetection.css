@@ -57,6 +57,8 @@
 }
 .theme-toggle{
     display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 10px;
     border-radius: 7px;
     background: transparent;

@@ -22,7 +22,7 @@ export const SkinDetection = () => {
         <UserTabs></UserTabs>
         <button className="theme-toggle" onClick={toggleTheme}>
           <svg viewBox="0 0 12 12" fill="none" stroke="currentColor"  strokeWidth="1.2" 
-            style={{height:'30px',marginLeft:'0px', marginRight:'0px'}}
+            style={{height:'30px',marginLeft:'10px', marginRight:'10px'}}
           ><path d="M9 5.8A4 4 0 1 1 5.2 2a3 3 0 0 0 3.8 3.8z"></path></svg>
             <p>{theme === 'light' ? 'Dark' : 'Light'} mode</p>
           </button>
