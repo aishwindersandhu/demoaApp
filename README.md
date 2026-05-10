@@ -84,6 +84,23 @@ After analysis, the sidebar displays your detected skin tone hex, depth label, u
 
 The app ships with two themes switchable from the sidebar. Both use the same underlying CSS token system — only the token values change between themes.
 
+## Array of user skin tones**
+  - **Deep Skin tone**
+ 
+ <img width="340" height="565" alt="deep-color-analysis" src="https://github.com/user-attachments/assets/def7d403-ce00-4606-b761-0f0d354c32b6" />
+
+  - **Rich Deep Skin tone**
+  <img width="357" height="541" alt="rich-deep" src="https://github.com/user-attachments/assets/e76ed64c-cd01-4bb0-a862-df7996eb5440" />
+
+  - **Fair Skin tone**
+ <img width="351" height="628" alt="Fair-1" src="https://github.com/user-attachments/assets/e5ed0dcc-aeb4-40ca-b173-f480b17d4031" />
+
+  - **Medium Skin tone**
+  <img width="341" height="570" alt="image" src="https://github.com/user-attachments/assets/ada822b7-bf2e-450b-be42-e1177ed520d0" />
+  
+  **Light Skin tone**
+  <img width="352" height="592" alt="light-1" src="https://github.com/user-attachments/assets/998fb98d-7b81-4097-979c-410a627993fa" />
+
 ## Colour Palettes
 Three palette categories are displayed in the Colours tab: Warm Colors, Cool Colors, and Dark Colors. Each palette contains 6 shades derived from the person's skin L value, with hues adjusted for their undertone.
 
