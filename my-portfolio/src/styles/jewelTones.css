@@ -1,0 +1,135 @@
+/* jewelTones.css */
+
+.jt-root {
+  padding:       1.25rem 1rem 1rem;
+  background:    var(--bg-card);
+  border-radius: 16px;
+  border:        0.5px solid var(--border-soft);
+  margin-top:    1rem;
+}
+
+.jt-header        { margin-bottom: 1.25rem; }
+
+.jt-eyebrow {
+  font-size:      10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color:          var(--text-dim);
+  margin-bottom:  5px;
+}
+
+.jt-title {
+  font-family:   'Playfair Display', Georgia, serif;
+  font-size:     20px;
+  font-weight:   400;
+  color:         var(--text-primary);
+  line-height:   1.1;
+  margin-bottom: 4px;
+}
+
+.jt-subtitle {
+  font-size: 12px;
+  color:     var(--text-muted);
+}
+
+/* ── Gem row ── */
+.jt-gems-row {
+  display:         flex;
+  justify-content: space-between;
+  gap:             6px;
+  margin-bottom:   1.25rem;
+}
+
+.jt-gem-item {
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
+  gap:            8px;
+  cursor:         pointer;
+  flex:           1;
+  position:       relative;
+}
+
+/* ── Gem size — bigger to match strips ── */
+.jt-gem-svg {
+  width:      90px;   /* was 64px */
+  height:     112px;  /* was 80px */
+  transition: transform 0.2s ease;
+  will-change: transform;
+}
+.jt-gem-item:hover .jt-gem-svg {
+  transform: translateY(-7px) scale(1.07);
+}
+
+.jt-gem-name {
+  font-size:   12px;
+  font-weight: 500;
+  color:       var(--text-primary);
+  text-align:  center;
+}
+
+/* ── Hex + copy button row ── */
+.jt-gem-hex-row {
+  display:     flex;
+  align-items: center;
+  gap:         4px;
+}
+
+.jt-gem-hex {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-family: monospace;
+    text-align: center;
+}
+
+/* ── Copy button — hidden until hover ── */
+.jt-copy-btn {
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  width:           22px;
+  height:          22px;
+  border-radius:   6px;
+  background:      var(--bg-surface);
+  border:          0.5px solid var(--border);
+  color:           var(--text-muted);
+  cursor:          pointer;
+  opacity:         0;
+  transform:       scale(0.8);
+  transition:      opacity 0.15s, transform 0.15s, background 0.15s;
+  flex-shrink:     0;
+}
+
+/* Visible on parent hover */
+.jt-copy-btn.visible {
+  opacity:   1;
+  transform: scale(1);
+}
+
+/* Copied success state */
+.jt-copy-btn.copied {
+  background: var(--bg-surface);
+  color:      #4CAF50;
+  border-color: #4CAF50;
+}
+
+.jt-copy-btn:hover {
+  background: var(--bg-app);
+}
+
+/* ── Footer ── */
+.jt-footer {
+  display:         flex;
+  justify-content: space-between;
+  align-items:     center;
+  padding-top:     .75rem;
+  border-top:      0.5px solid var(--border-soft);
+}
+
+.jt-footer-note,
+.jt-footer-count {
+  font-size:      10px;
+  color:          var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}

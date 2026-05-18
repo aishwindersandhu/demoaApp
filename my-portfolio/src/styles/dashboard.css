@@ -1,6 +1,7 @@
 .dashboard-card-wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  align-items: start;
 }
 
 .dashboard-card {
@@ -12,6 +13,7 @@
   margin: 0px 10px;
   overflow: hidden;
   cursor: pointer;
+  
 }
 
 .dashboard-card:hover {
