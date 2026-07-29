@@ -1,6 +1,9 @@
 .card-container{
   background-color: var(--btn-primary-fg);
-  width: 1200px;
+  width: 100%;
+  max-width: 1200px;
+  min-width: 0;
+  box-sizing: border-box;
   padding: 20px;
 }
 .analysis-card-container {

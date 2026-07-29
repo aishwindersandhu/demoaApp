@@ -5,7 +5,7 @@ import '../styles/userTabs.css';
 
 export const UserTabs = () =>{
   const pillsArr = ['Colours','Makeup','Products'];
-  const [selectedTab, setSelectedTab] = useState<String>('Colours');
+  const [selectedTab, setSelectedTab] = useState<String>('Colours');//Default state
   const dispatch = useDispatch();
 
 

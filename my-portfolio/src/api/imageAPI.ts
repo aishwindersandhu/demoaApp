@@ -1,10 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { FaceDetails } from '../interfaces/imageDataInterface';
+import { RecommendationResponse } from '../interfaces/productInterface';
 
 export const imageApi = createApi({
   reducerPath: 'imageAPI',
   baseQuery: fetchBaseQuery(
-    //{ baseUrl: 'http://127.0.0.1:8000' }
-     { baseUrl: 'https://faceapp-1-p1do.onrender.com' } 
+    { baseUrl: 'http://127.0.0.1:8000' }
+    //  { baseUrl: 'https://faceapp-1-p1do.onrender.com' } 
   ),
   endpoints: (builder) => ({
     //builder.query takes return type and parameters only for GET Requests\
@@ -22,8 +24,15 @@ export const imageApi = createApi({
         };
       },
     }),
+    getRecommendations: builder.mutation<RecommendationResponse, { userId: string; body: FaceDetails }>({
+      query: ({ userId, body }) => ({
+        url: `/recommendations/${userId}`,
+        method: 'POST',
+        body,
+      }),
+    }),
   })
 
 });
 
-export const {useUploadImageMutation } = imageApi;
+export const { useUploadImageMutation, useGetRecommendationsMutation } = imageApi;

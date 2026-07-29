@@ -6,12 +6,19 @@ import '../styles/skinDetection.css';
 import { useSelector } from "react-redux";
 import { useTheme } from '../ThemeContext';
 import { ColorAnalysis } from './colorAnalysis';
+import { ProductRecommendations } from './productRecommendations';
 
 export const SkinDetection = () => {
   const imageData = useSelector((state: RootState) => state.imageReducer.imageData);
+  const showBoard = useSelector((state: RootState) => state.utilsReducer.showBoard);
   const { theme, toggleTheme } = useTheme();
 
   const { colorCode, skinTone, colorPalette,profile } = imageData.data;
+
+  const getBoard = () => {
+    if (showBoard === 'Products') return <ProductRecommendations></ProductRecommendations>;
+    return <ColorAnalysis></ColorAnalysis>;
+  }
   // const mockColorPalette = ["#313131", "#FF00FF", "#EFEFEF", "#FFD700"]
   return (
     //Use reusable cards for better structure.
@@ -27,7 +34,7 @@ export const SkinDetection = () => {
             <p>{theme === 'light' ? 'Dark' : 'Light'} mode</p>
           </button>
       </div>
-      <ColorAnalysis></ColorAnalysis>
+      {getBoard()}
     </div>
   )
 }

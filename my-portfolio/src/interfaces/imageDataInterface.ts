@@ -27,4 +27,5 @@ export interface ImageData {
 export interface ImageReducerState {
   imageLink: string;
   imageData: ImageData;
+  sessionId: string;
 }

@@ -21,6 +21,7 @@ const initialState: ImageReducerState = {
       }
     }
   },
+  sessionId: crypto.randomUUID(),
 }
 const imageReducer = createSlice({
   name: "image",
