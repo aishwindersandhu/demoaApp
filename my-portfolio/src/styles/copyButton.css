@@ -13,6 +13,13 @@
       transition: background 0.15s;
       position: relative;
     }
+.copy-btn:focus{
+      outline: none;
+    }
+.copy-btn:focus-visible{
+      outline: 2px solid var(--warn-accent);
+      outline-offset: 2px;
+    }
 .copied-text{
           position: absolute;
           bottom: 32;

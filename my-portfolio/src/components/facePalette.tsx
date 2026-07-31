@@ -27,7 +27,7 @@ export const FacePalette = ({ colorPalette }: FaceDetails) => {
                 <div>{SWATCH_LABELS[index]} </div>
                 <div>{color}</div>
               </div>
-             <div style={{marginLeft:'70px'}}> <CopyButton hex={color}></CopyButton></div>
+              <CopyButton hex={color}></CopyButton>
             </div>
 
 

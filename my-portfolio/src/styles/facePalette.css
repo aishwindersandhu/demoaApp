@@ -68,6 +68,9 @@
 .fp-swatch-label {
     text-align: center;
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
     font-size: 15px;
     color: var( --text-muted);
     letter-spacing: 0.02em;

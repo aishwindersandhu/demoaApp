@@ -56,9 +56,14 @@
   background: burlywood;
 }
 .theme-toggle{
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
     display: flex;
     align-items: center;
     gap: 10px;
+    padding: 0 16px;
     border-radius: 7px;
     background: transparent;
     border: 0.5px solid var(--border-soft);
@@ -69,11 +74,28 @@
     height: 40px;
     margin-left: 40px;
     margin-top: 40px;
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
 }
 .theme-toggle:hover{
-  border: none;
+  border-color: var(--warn-accent);
   background-color: var(--bg-card);
+  color: var(--text-primary);
+}
+.theme-toggle:active{
+  transform: scale(0.98);
 }
 .theme-toggle:focus{
   outline: none;
+}
+.theme-toggle:focus-visible{
+  outline: 2px solid var(--warn-accent);
+  outline-offset: 2px;
+}
+.theme-toggle-icon{
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+.theme-toggle-label{
+  margin: 0;
 }

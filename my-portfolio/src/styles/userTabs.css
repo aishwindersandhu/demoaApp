@@ -6,13 +6,24 @@
     padding: 6px 15px;
     border-radius: 10px;
     margin-bottom: 5px;
-    color: #686C7A;
+    color: var(--text-muted);
     cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+    outline: none;
+    border: none;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+}
+.tab-pills:focus,
+.tab-pills:focus-visible {
+  outline: none;
 }
 .tab-pill-selected{
   background-color: var(--bg-card);
-  color: #BD8453;
+  color: var(--warn-accent);
+  font-weight: 600;
 }
 .tab-pills:hover{
   background-color: var(--bg-card);
+  color: var(--text-primary);
 }
