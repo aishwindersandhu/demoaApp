@@ -19,6 +19,14 @@ const getProductIcon = (category: CategoryOut, index: number) => {
   return pool[index % pool.length];
 };
 
+// Some backend shade entries use the hex code itself as the "name" (no
+// friendly name assigned yet) — showing it would just repeat the swatch's hex.
+const isHexLike = (value: string) => /^#?[0-9a-f]{6}$/i.test(value.trim());
+
+// Catalogue products without a real photo point at a local "/assets/products/..."
+// path that was never actually populated — only absolute CDN URLs are real.
+const hasRealImage = (image: string) => /^https?:\/\//i.test(image);
+
 interface ProductShelfProps {
   category: CategoryOut;
   skinColorHex: string;
@@ -40,6 +48,9 @@ export const ProductShelf = ({ category, skinColorHex, unwrapScroll = false }: P
   const trackRef = useRef<HTMLDivElement>(null);
   // Locally-tracked "saved" state — not persisted, resets on remount/refresh.
   const [savedIds, setSavedIds] = useState<Set<string>>(new Set());
+  // Products whose image 404'd or otherwise failed to load — falls back to
+  // the emoji icon rather than showing a broken-image glyph.
+  const [failedImageIds, setFailedImageIds] = useState<Set<string>>(new Set());
 
   // Scrolls the product track left/right by roughly one card width.
   const scrollByCard = (direction: 1 | -1) => {
@@ -62,7 +73,9 @@ export const ProductShelf = ({ category, skinColorHex, unwrapScroll = false }: P
       <div className="product-shelf-header">
         <div className="product-shelf-title">
           <span className="shelf-dash">—</span>
-          <span className="shelf-label">{category.label}</span>
+          <span className="shelf-label tooltip-host" data-fulltext={category.label}>
+            <span className="truncate-text">{category.label}</span>
+          </span>
           <span className="shelf-count">{category.products.length}</span>
         </div>
         {/* Nav arrows only make sense for the scrolling row — hidden once wrapped */}
@@ -86,12 +99,23 @@ export const ProductShelf = ({ category, skinColorHex, unwrapScroll = false }: P
           category.products.map((product, index) => {
             const isSaved = savedIds.has(product.id);
             const matchedShade = findClosestByHex(product.shades, skinColorHex);
+            const showImage = hasRealImage(product.image) && !failedImageIds.has(product.id);
             return (
               <div className="product-card" key={product.id}>
                 <div className="product-media">
                   {product.isTopPick && <span className="product-badge-top">Top pick</span>}
                   <span className="product-badge-percent">{product.matchPercent}%</span>
-                  <span className="product-media-icon" aria-hidden="true">{getProductIcon(category, index)}</span>
+                  {showImage ? (
+                    <img
+                      className="product-media-image"
+                      src={product.image}
+                      alt={product.name}
+                      loading="lazy"
+                      onError={() => setFailedImageIds((prev) => new Set(prev).add(product.id))}
+                    />
+                  ) : (
+                    <span className="product-media-icon" aria-hidden="true">{getProductIcon(category, index)}</span>
+                  )}
                   <button
                     className={`product-heart-btn ${isSaved ? 'product-heart-btn-active' : ''}`}
                     onClick={(e) => toggleSaved(e, product.id)}
@@ -105,17 +129,25 @@ export const ProductShelf = ({ category, skinColorHex, unwrapScroll = false }: P
                   </button>
                 </div>
                 <div className="product-info">
-                  <div className="product-brand">{product.brand}</div>
+                  <div className="product-brand tooltip-host" data-fulltext={product.brand}>
+                    <span className="truncate-text">{product.brand}</span>
+                  </div>
                   <div className="product-name">{product.name}</div>
                   <div className="product-shade-swatches">
                     <span
-                      className="shade-swatch"
+                      className="shade-swatch tooltip-host"
                       style={{ backgroundColor: matchedShade.hex }}
-                      title={matchedShade.name}
+                      data-fulltext={matchedShade.name}
                     ></span>
-                    <span className="shade-swatch-name">{matchedShade.name}</span>
+                    {!isHexLike(matchedShade.name) && (
+                      <span className="shade-swatch-name tooltip-host" data-fulltext={matchedShade.name}>
+                        <span className="truncate-text">{matchedShade.name}</span>
+                      </span>
+                    )}
                   </div>
-                  <div className="product-price">{product.price}</div>
+                  <div className="product-price">
+                    <span className="truncate-text">{product.price}</span>
+                  </div>
                 </div>
               </div>
             );
