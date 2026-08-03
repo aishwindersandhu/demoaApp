@@ -28,6 +28,7 @@ export const ProductRecommendations = ({
 }: ProductRecommendationsProps = {}) => {
   const imageData = useSelector((state: RootState) => state.imageReducer.imageData);
   const sessionId = useSelector((state: RootState) => state.imageReducer.sessionId);
+  const skinColorHex = imageData.data.colorCode;
   const [getRecommendations, { data, isLoading, isError }] = useGetRecommendationsMutation();
   const [internalFilter, setInternalFilter] = useState('All');
   // Falls back to local state when no controlled filter/setter is passed in.
@@ -76,7 +77,12 @@ export const ProductRecommendations = ({
       </div>
       {
         visibleCategories.map((category) => (
-          <ProductShelf category={category} key={category.key}></ProductShelf>
+          <ProductShelf
+            category={category}
+            skinColorHex={skinColorHex}
+            unwrapScroll={selectedFilter !== 'All'}
+            key={category.key}
+          ></ProductShelf>
         ))
       }
     </div>

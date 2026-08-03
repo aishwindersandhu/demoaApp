@@ -9,3 +9,28 @@ export function base64ToBlob(base64: string): Blob {
   const array = Uint8Array.from(binary, char => char.charCodeAt(0));
   return new Blob([array], { type: mime });
 }
+
+/** Parses a "#rrggbb" hex string into its {r,g,b} components. */
+export function hexToRgb(hex: string): { r: number; g: number; b: number } {
+  return {
+    r: parseInt(hex.slice(1, 3), 16),
+    g: parseInt(hex.slice(3, 5), 16),
+    b: parseInt(hex.slice(5, 7), 16),
+  };
+}
+
+/**
+ * Picks the entry from `options` whose `hex` is closest to `targetHex`,
+ * using Euclidean distance in RGB space. Used to find the product shade
+ * that best matches the user's detected skin tone.
+ */
+export function findClosestByHex<T extends { hex: string }>(options: Array<T>, targetHex: string): T {
+  const target = hexToRgb(targetHex);
+  return options.reduce((closest, option) => {
+    const a = hexToRgb(option.hex);
+    const b = hexToRgb(closest.hex);
+    const distA = (a.r - target.r) ** 2 + (a.g - target.g) ** 2 + (a.b - target.b) ** 2;
+    const distB = (b.r - target.r) ** 2 + (b.g - target.g) ** 2 + (b.b - target.b) ** 2;
+    return distA < distB ? option : closest;
+  });
+}

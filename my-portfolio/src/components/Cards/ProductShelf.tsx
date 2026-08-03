@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import { CategoryOut } from '../../interfaces/productInterface';
+import { findClosestByHex } from '../../utils/utils';
 import '../../styles/productRecommendations.css';
 
 // Mock icon variety per category — until real product images exist, cycle
@@ -18,8 +19,24 @@ const getProductIcon = (category: CategoryOut, index: number) => {
   return pool[index % pool.length];
 };
 
-/** Horizontally scrollable shelf of product cards for one category, with save/heart toggling per product. */
-export const ProductShelf = ({ category }: { category: CategoryOut }) => {
+interface ProductShelfProps {
+  category: CategoryOut;
+  skinColorHex: string;
+  // True when this category is the only one visible (a specific filter pill
+  // is selected rather than "All"). In that case the shelf drops its
+  // horizontal scroll and instead wraps every product onto the page, since
+  // there's no longer a row of other shelves it needs to stay compact for.
+  unwrapScroll?: boolean;
+}
+
+/**
+ * Product shelf for one category, with save/heart toggling per product.
+ * Each card shows only the single shade that best matches the user's
+ * detected skin tone (`skinColorHex`), rather than every shade the product
+ * comes in. Renders as a horizontally scrollable row by default, or as a
+ * wrapped grid when `unwrapScroll` is set.
+ */
+export const ProductShelf = ({ category, skinColorHex, unwrapScroll = false }: ProductShelfProps) => {
   const trackRef = useRef<HTMLDivElement>(null);
   // Locally-tracked "saved" state — not persisted, resets on remount/refresh.
   const [savedIds, setSavedIds] = useState<Set<string>>(new Set());
@@ -48,23 +65,27 @@ export const ProductShelf = ({ category }: { category: CategoryOut }) => {
           <span className="shelf-label">{category.label}</span>
           <span className="shelf-count">{category.products.length}</span>
         </div>
-        <div className="shelf-nav-group">
-          <button
-            className="shelf-nav-btn"
-            onClick={() => scrollByCard(-1)}
-            aria-label={`Scroll ${category.label} left`}
-          >‹</button>
-          <button
-            className="shelf-nav-btn"
-            onClick={() => scrollByCard(1)}
-            aria-label={`Scroll ${category.label} right`}
-          >›</button>
-        </div>
+        {/* Nav arrows only make sense for the scrolling row — hidden once wrapped */}
+        {!unwrapScroll && (
+          <div className="shelf-nav-group">
+            <button
+              className="shelf-nav-btn"
+              onClick={() => scrollByCard(-1)}
+              aria-label={`Scroll ${category.label} left`}
+            >‹</button>
+            <button
+              className="shelf-nav-btn"
+              onClick={() => scrollByCard(1)}
+              aria-label={`Scroll ${category.label} right`}
+            >›</button>
+          </div>
+        )}
       </div>
-      <div className="product-shelf-track" ref={trackRef}>
+      <div className={`product-shelf-track ${unwrapScroll ? 'product-shelf-track-wrap' : ''}`} ref={trackRef}>
         {
           category.products.map((product, index) => {
             const isSaved = savedIds.has(product.id);
+            const matchedShade = findClosestByHex(product.shades, skinColorHex);
             return (
               <div className="product-card" key={product.id}>
                 <div className="product-media">
@@ -87,16 +108,12 @@ export const ProductShelf = ({ category }: { category: CategoryOut }) => {
                   <div className="product-brand">{product.brand}</div>
                   <div className="product-name">{product.name}</div>
                   <div className="product-shade-swatches">
-                    {
-                      product.shades.map((shade) => (
-                        <span
-                          className="shade-swatch"
-                          style={{ backgroundColor: shade.hex }}
-                          title={shade.name}
-                          key={shade.name}
-                        ></span>
-                      ))
-                    }
+                    <span
+                      className="shade-swatch"
+                      style={{ backgroundColor: matchedShade.hex }}
+                      title={matchedShade.name}
+                    ></span>
+                    <span className="shade-swatch-name">{matchedShade.name}</span>
                   </div>
                   <div className="product-price">{product.price}</div>
                 </div>
