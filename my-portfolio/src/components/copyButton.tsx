@@ -1,9 +1,11 @@
 import {useState} from "react";
 import '../styles/copyButton.css';
 
+/** Small icon button that copies a hex colour code to the clipboard, with a brief "Copied!" confirmation. */
 export const CopyButton = ({hex}: {hex:string}) =>{
   const [copied, setCopied] = useState(false)
 
+  // Copies the hex value and shows a checkmark + "Copied!" label for 1.8s.
   const handleCopy = async (e:React.MouseEvent) => {
     e.stopPropagation()
     await navigator.clipboard.writeText(hex)

@@ -2,28 +2,38 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { FaceDetails } from '../interfaces/imageDataInterface';
 import { RecommendationResponse } from '../interfaces/productInterface';
 
+/**
+ * RTK Query API slice for the backend face-analysis service.
+ * Registered in the Redux store (see redux/store.ts) so its cache, loading,
+ * and error state are managed automatically and exposed via generated hooks.
+ */
 export const imageApi = createApi({
   reducerPath: 'imageAPI',
   baseQuery: fetchBaseQuery(
     { baseUrl: 'http://127.0.0.1:8000' }
-    //  { baseUrl: 'https://faceapp-1-p1do.onrender.com' } 
+    // Production backend — swap when deploying:
+    //  { baseUrl: 'https://faceapp-1-p1do.onrender.com' }
   ),
   endpoints: (builder) => ({
-    //builder.query takes return type and parameters only for GET Requests\
-    //builder.mutation used for POST and PUT requests
-    //Creating an api hook that can be consumed on the front end.
+    // builder.query -> GET requests (read-only, cached by default)
+    // builder.mutation -> POST/PUT/etc requests (state-changing)
+    // Each endpoint below is exposed as a `use<Name>Mutation` hook.
+
+    /** Uploads a face photo for analysis (skin tone, undertone, colour palette). */
     uploadImage: builder.mutation<object, File>({
       query: (file) => {
         console.log(file,"data");
-        const formData = new FormData(); //creates POST Obj or the request params
+        const formData = new FormData(); // multipart body required for file upload
         formData.append('file', file);
         return {
-          url: '/analyze', // this should be your backend endpoint
+          url: '/analyze', // backend face-analysis endpoint
           method: 'POST',
          body: formData,
         };
       },
     }),
+
+    /** Fetches product recommendations for a session based on its analyzed face details. */
     getRecommendations: builder.mutation<RecommendationResponse, { userId: string; body: FaceDetails }>({
       query: ({ userId, body }) => ({
         url: `/recommendations/${userId}`,
@@ -35,4 +45,5 @@ export const imageApi = createApi({
 
 });
 
+// Auto-generated React hooks for the endpoints defined above.
 export const { useUploadImageMutation, useGetRecommendationsMutation } = imageApi;

@@ -6,6 +6,7 @@ interface AnalysisCardProps {
   title: string;
 }
 
+/** Small stat tile showing a single value (e.g. a percentage or count) with its label. */
 export const AnalysisCard = ({value,title} : AnalysisCardProps) => {
   return (
     <React.Fragment>

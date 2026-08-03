@@ -7,7 +7,9 @@ const SWATCH_LABELS = ['Conceal', 'Base', 'Contour', 'Highlight'];
 
 
 
+/** Displays the 4 recommended makeup swatches (Conceal/Base/Contour/Highlight) with copyable hex codes. */
 export const FacePalette = ({ colorPalette }: FaceDetails) => {
+  // Copied so the source array from Redux state isn't mutated by consumers.
   const swatches = [
     ...colorPalette,
   ];

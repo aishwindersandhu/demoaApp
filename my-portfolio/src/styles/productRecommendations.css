@@ -17,6 +17,13 @@
   margin: 16px 0 24px;
 }
 
+@media (max-width: 768px) {
+  /* Category filtering moves into the mobile nav drawer on small screens. */
+  .product-filter-pills {
+    display: none;
+  }
+}
+
 .product-filter-pill {
   appearance: none;
   -webkit-appearance: none;

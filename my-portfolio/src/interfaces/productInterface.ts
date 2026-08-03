@@ -1,10 +1,12 @@
 // Mirrors app/recommendations/models.py response models (server serialises to camelCase).
 
+/** A single shade option for a product, e.g. `{ name: 'Warm Beige', hex: '#D9B896' }`. */
 export interface Shade {
   name: string;
   hex: string;
 }
 
+/** A single recommended product returned by `/recommendations/{userId}`. */
 export interface ProductOut {
   id: string;
   brand: string;
@@ -17,6 +19,7 @@ export interface ProductOut {
   darkBackground: boolean;
 }
 
+/** A product category (e.g. foundation, blush) grouping its recommended products. */
 export interface CategoryOut {
   key: string;
   label: string;
@@ -24,6 +27,7 @@ export interface CategoryOut {
   products: Array<ProductOut>;
 }
 
+/** Full response payload from `/recommendations/{userId}`. */
 export interface RecommendationResponse {
   toneLabel: string;
   matchPercent: number;

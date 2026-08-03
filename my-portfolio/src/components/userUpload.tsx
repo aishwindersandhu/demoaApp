@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { displayLoader } from '../reducers/utilSlice';
 import '../styles/userUpload.css';
 
+/** Simple image preview with a loading overlay, driven by Redux image/loading state. */
 export const UserImage = () => {
   //consume state variable and display it to user.
   const imageSrc = useSelector((state: RootState) => { return state.imageReducer.imageLink });

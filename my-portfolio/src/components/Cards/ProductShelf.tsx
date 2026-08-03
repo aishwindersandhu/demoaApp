@@ -12,19 +12,24 @@ const CATEGORY_ICON_POOL: Record<string, string[]> = {
   highlight: ['✨', '🌟', '💫', '☀️'],
 };
 
+/** Picks a decorative icon for a product card, cycling through the category's icon pool by index. */
 const getProductIcon = (category: CategoryOut, index: number) => {
   const pool = CATEGORY_ICON_POOL[category.key] ?? [category.icon];
   return pool[index % pool.length];
 };
 
+/** Horizontally scrollable shelf of product cards for one category, with save/heart toggling per product. */
 export const ProductShelf = ({ category }: { category: CategoryOut }) => {
   const trackRef = useRef<HTMLDivElement>(null);
+  // Locally-tracked "saved" state — not persisted, resets on remount/refresh.
   const [savedIds, setSavedIds] = useState<Set<string>>(new Set());
 
+  // Scrolls the product track left/right by roughly one card width.
   const scrollByCard = (direction: 1 | -1) => {
     trackRef.current?.scrollBy({ left: direction * 220, behavior: 'smooth' });
   };
 
+  // Toggles the saved/heart state for a product; stops propagation so it doesn't trigger card click handlers.
   const toggleSaved = (e: React.MouseEvent, productId: string) => {
     e.stopPropagation();
     setSavedIds((prev) => {

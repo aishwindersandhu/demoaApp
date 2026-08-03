@@ -2,8 +2,10 @@ import '../../styles/dashboard.css';
 import { colorStrip } from '../../interfaces/imageDataInterface';
 import { CopyButton } from "../copyButton";
 
+/** Renders a titled column of colour swatches (e.g. "Warm Colors") with copyable hex codes, or nothing if the palette is empty. */
 export const VerticalStrips = ({ palette,title }: { palette: Array<colorStrip>, title:string }) => {
 
+  // Builds one strip per palette entry, each showing its name, hex code, and a copy button.
   const getColors = () => {
     const divList = <div style={{ display: 'flex' }}>
       {

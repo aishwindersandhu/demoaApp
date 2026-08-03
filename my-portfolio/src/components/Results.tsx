@@ -5,6 +5,11 @@ import { useNavigate } from "react-router-dom";
 import { useTheme } from "../ThemeContext";
 import { LoadingScreen } from "./LoadingScreen";
 
+/**
+ * Route target for `/results`. Shows a loading screen while the backend
+ * analysis request is in flight, a fallback if no data is available
+ * (e.g. direct navigation without an upload), or the SkinDetection dashboard.
+ */
 export const ResultsPage = () => {
   const navigate = useNavigate();
   const { theme } = useTheme();

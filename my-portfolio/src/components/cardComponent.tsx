@@ -3,9 +3,16 @@ import { useSelector } from "react-redux";
 import '../styles/cardComponent.css';
 import { JSX, Fragment } from 'react';
 
+/**
+ * Legacy/alternate summary card renderer (dominant skin tone + colour palette).
+ * Superseded in the current UI by AnalysisCard/ColorAnalysis, kept for reference.
+ */
 const CardComponent = () => {
   const imageData = useSelector((state: RootState) => state.imageReducer.imageData);
   const { skinTone, colorCode, colorPalette } = imageData.data;
+
+  // Returns the display details (swatch class/style, label, and any multi-colour
+  // palette dots) for a given card title.
   const getCardDetails = (title: string) => {
     let classLabel = '';
     let styleData = {};
@@ -37,6 +44,7 @@ const CardComponent = () => {
     }
     return { classLabel, styleData, cardLabel, palette };
   }
+  // Builds one card per title in cardTitles, using getCardDetails for its content.
   const getCards = () => {
     let cards = [];
     const cardTitles = ['Dominant Skin Tone', 'Color Palette', 

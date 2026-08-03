@@ -1,9 +1,37 @@
+.skin-detection-shell {
+    display: flex;
+    width: 100%;
+    max-width: 1600px;
+    min-height: 800px;
+}
+
+.board-content {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+}
+
 .left-panel-card {
     height: 100%;
     width: 300px;
+    flex-shrink: 0;
     border-right: 0.5px solid var( --border-soft);
     background-color: var(--bg-app);
     margin-left: 15px;
+}
+
+@media (max-width: 768px) {
+    .skin-detection-shell {
+        flex-direction: column;
+        width: 100%;
+        min-height: 100vh;
+    }
+    .left-panel-card {
+        display: none;
+    }
+    .board-content {
+        width: 100%;
+    }
 }
 .user-section {
   color: black;

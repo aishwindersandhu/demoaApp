@@ -7,6 +7,7 @@ import { JewelTones } from './Cards/JewelTones';
 import '../styles/dashboard.css';
 
 
+/** "Colours" board: summary match stats plus warm/cool/dark palette strips and jewel-tone gems. */
 export const ColorAnalysis = () => {
   const imageData = useSelector((state: RootState) => state.imageReducer.imageData);
   const { warm_palette, cool_palette, dark_palette, jewel_tones } = imageData.data.profile;
@@ -26,7 +27,7 @@ export const ColorAnalysis = () => {
       <VerticalStrips palette={cool_palette} title={'Cool Colors'}></VerticalStrips>
       <VerticalStrips palette={dark_palette} title={'Dark Colors'}></VerticalStrips>
     </div>
-    <div style={{display:'grid',gridTemplateColumns:'repeat(2,1fr)'}}>
+    <div className="jewel-tones-wrapper">
       <JewelTones palette={jewel_tones} title={'Jewel Tones'}></JewelTones>
     </div>
 

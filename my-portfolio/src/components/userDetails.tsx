@@ -4,6 +4,7 @@ interface UserDetailsProperties{
   skinTone: string;
   undertone: string;
 }
+/** Header card showing the detected skin tone: an avatar tinted with the tone, its name, hex code and undertone. */
 export const UserDetails = ({ colorCode, skinTone,undertone }: UserDetailsProperties) => {
 
   return (

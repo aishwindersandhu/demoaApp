@@ -3,6 +3,7 @@ import { colorStrip } from "../../interfaces/imageDataInterface";
 import { CopyButton } from "../copyButton";
 import "../../styles/jewelTones.css";
 
+/** Lightens a hex colour toward white by `amount` (0-1), returned as an rgb() string. */
 const lighten = (hex: string, amount: number): string => {
   const r = parseInt(hex.slice(1, 3), 16);
   const g = parseInt(hex.slice(3, 5), 16);
@@ -11,6 +12,7 @@ const lighten = (hex: string, amount: number): string => {
   return `rgb(${l(r)},${l(g)},${l(b)})`;
 };
 
+/** Darkens a hex colour toward black by `amount` (0-1), returned as an rgb() string. */
 const darken = (hex: string, amount: number): string => {
   const r = parseInt(hex.slice(1, 3), 16);
   const g = parseInt(hex.slice(3, 5), 16);
@@ -19,6 +21,7 @@ const darken = (hex: string, amount: number): string => {
   return `rgb(${d(r)},${d(g)},${d(b)})`;
 };
 
+/** Faceted gemstone SVG illustration, coloured with a lighten/darken gradient derived from `hex`. */
 const GemShape: React.FC<{ hex: string; name: string }> = ({ hex, name }) => {
   const id = `gem-${name.toLowerCase().replace(/\s+/g, "-")}`;
   const light = lighten(hex, 0.35);
@@ -41,6 +44,7 @@ const GemShape: React.FC<{ hex: string; name: string }> = ({ hex, name }) => {
   );
 };
 
+/** A single gem tile: illustration, name, hex code, and copy button. */
 const GemItem: React.FC<{ item: colorStrip }> = ({ item }) => {
   const [hovered, setHovered] = useState(false);
 
@@ -62,6 +66,7 @@ const GemItem: React.FC<{ item: colorStrip }> = ({ item }) => {
   );
 };
 
+/** Row of jewel-toned gem swatches (a stylised alternative to the plain colour strips) for a given palette. */
 export const JewelTones = ({
   palette,
   title,

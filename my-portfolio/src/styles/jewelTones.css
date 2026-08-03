@@ -133,3 +133,22 @@
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
+
+@media (max-width: 768px) {
+  .jt-gems-row {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+  .jt-gem-item {
+    flex: 1 1 132px;
+    background: var(--bg-app);
+    border: 0.5px solid var(--border-soft);
+    border-radius: 14px;
+    padding: 14px 10px;
+  }
+  .jt-gem-svg {
+    width: 72px;
+    height: 90px;
+  }
+}

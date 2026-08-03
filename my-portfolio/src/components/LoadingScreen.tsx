@@ -1,13 +1,16 @@
 import "../styles/LoadingScreen.css"
 
+// Decorative skin-tone gradient shown along the bottom of the loading screen.
 const TONE_STRIP = ["#F5CBA7", "#E59866", "#CA6F1E", "#A04000", "#784212", "#4A235A", "#2C1810"];
 
+// Text labels for the animated step list — purely visual, not tied to real backend progress.
 const STEPS = [
   "Detecting skin regions",
   "Classifying undertone",
   "Building your colour palette",
 ];
 
+/** Full-screen animated loading state shown while the face analysis request is in flight. */
 export const LoadingScreen = () => (
   <div className="loading-screen">
 

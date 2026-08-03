@@ -7,6 +7,10 @@ import { RootState } from '../redux/store';
 import { useUploadImageMutation } from '../api/imageAPI';
 import { useNavigate } from 'react-router-dom';
 
+/**
+ * Landing page: lets the user capture or upload a face photo (via FaceCapture),
+ * then submits it to the backend for analysis and navigates to the results page.
+ */
 export const UploadImage = () => {
   const dispatch  = useDispatch();
   const navigate  = useNavigate();
@@ -26,6 +30,9 @@ export const UploadImage = () => {
     setFileData(file);
   };
 
+  // Uploads the captured photo, stores the analysis result in Redux, then
+  // navigates immediately (loading state is shown on the results page while
+  // the request is still in flight).
   const analyzePicture = () => {
     if (!fileData) return;
     dispatch(displayLoader(true));

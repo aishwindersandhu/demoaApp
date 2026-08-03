@@ -34,6 +34,12 @@ const tokens = {
 // Tone strip colours — purely decorative
 const TONE_STRIP = ["#F5CBA7","#E59866","#CA6F1E","#A04000","#784212","#4A235A","#2C1810"];
 
+/**
+ * Face photo input widget with three modes: idle (drag/drop or browse),
+ * webcam (live capture), and preview (review the chosen/captured photo).
+ * Whenever a photo becomes available it's passed up via `handleWebImage`
+ * and also stored in Redux (imageLink) for the preview shown on this page.
+ */
 const FaceCapture: React.FC<FaceCaptureProps> = ({ handleWebImage }) => {
   const dispatch   = useDispatch();
   const webcamRef  = useRef<any>(null);
@@ -45,6 +51,8 @@ const FaceCapture: React.FC<FaceCaptureProps> = ({ handleWebImage }) => {
   const [isDragging, setIsDragging]   = useState(false);
 
   // ── Webcam capture ──────────────────────────────────────────────
+  // Grabs a screenshot from the live webcam feed, converts it to a File-like
+  // Blob, stores it in Redux for preview, and hands it off to the parent.
   const handleCapture = useCallback(() => {
     if (!webcamRef.current) return;
     const imageSrc: string = webcamRef.current.getScreenshot();
@@ -62,6 +70,9 @@ const FaceCapture: React.FC<FaceCaptureProps> = ({ handleWebImage }) => {
   };
 
   // ── File upload ─────────────────────────────────────────────────
+  // Shared by both the file input and drag-and-drop: validates it's an
+  // image, creates an object URL for local preview, and hands the raw
+  // File off to the parent for upload.
   const handleFile = (file: File) => {
     if (!file.type.startsWith("image/")) return;
     const url = URL.createObjectURL(file);
@@ -83,6 +94,7 @@ const FaceCapture: React.FC<FaceCaptureProps> = ({ handleWebImage }) => {
     if (file) handleFile(file);
   };
 
+  // Clears the current photo/preview and returns to the drop-zone UI.
   const resetToIdle = () => {
     setMode("idle");
     setPreviewUrl(null);
@@ -91,6 +103,7 @@ const FaceCapture: React.FC<FaceCaptureProps> = ({ handleWebImage }) => {
   };
 
   // ── Render helpers ───────────────────────────────────────────────
+  // Idle-mode UI: drag-and-drop target that also opens the file picker on click.
   const renderDropZone = () => (
     <div
       onDragOver={e => { e.preventDefault(); setIsDragging(true); }}
@@ -150,6 +163,7 @@ const FaceCapture: React.FC<FaceCaptureProps> = ({ handleWebImage }) => {
     </div>
   );
 
+  // Webcam-mode UI: live video feed with a mirror toggle.
   const renderWebcam = () => (
     <div style={{ width: "100%", borderRadius: 20, overflow: "hidden", position: "relative" }}>
       <Webcam
@@ -179,6 +193,7 @@ const FaceCapture: React.FC<FaceCaptureProps> = ({ handleWebImage }) => {
     </div>
   );
 
+  // Preview-mode UI: shows the chosen/captured photo with a "change photo" action.
   const renderPreview = () => (
     <div style={{ width: "100%", position: "relative", borderRadius: 20, overflow: "hidden" }}>
       <img
@@ -295,6 +310,7 @@ interface BtnProps {
   disabled?: boolean;
 }
 
+/** Outlined secondary action button (e.g. "Capture", "Browse files"). */
 const SecondaryBtn: React.FC<BtnProps> = ({ onClick, children, icon }) => (
   <button
     onClick={onClick}
@@ -320,6 +336,7 @@ const SecondaryBtn: React.FC<BtnProps> = ({ onClick, children, icon }) => (
   </button>
 );
 
+/** Filled primary call-to-action button, also exported for use on the upload page (e.g. "Analyse my palette"). */
 const PrimaryBtn: React.FC<BtnProps> = ({ onClick, children, style, disabled }) => (
   <button
     onClick={onClick}
