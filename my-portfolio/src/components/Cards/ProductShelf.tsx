@@ -11,6 +11,10 @@ const isHexLike = (value: string) => /^#?[0-9a-f]{6}$/i.test(value.trim());
 // path that was never actually populated — only absolute CDN URLs are real.
 const hasRealImage = (image: string) => /^https?:\/\//i.test(image);
 
+// Cap each shelf at this many products up front, revealing the rest only
+// once the user asks for them via the "load more" tile.
+const INITIAL_VISIBLE_COUNT = 10;
+
 interface ProductShelfProps {
   category: CategoryOut;
   skinColorHex: string;
@@ -35,6 +39,9 @@ export const ProductShelf = ({ category, skinColorHex, unwrapScroll = false }: P
   // Products whose image 404'd or otherwise failed to load — falls back to
   // the emoji icon rather than showing a broken-image glyph.
   const [failedImageIds, setFailedImageIds] = useState<Set<string>>(new Set());
+  // How many of this category's products are currently rendered — starts
+  // capped at INITIAL_VISIBLE_COUNT, expands to the full list on demand.
+  const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE_COUNT);
 
   // Scrolls the product track left/right by roughly one card width.
   const scrollByCard = (direction: 1 | -1) => {
@@ -80,13 +87,20 @@ export const ProductShelf = ({ category, skinColorHex, unwrapScroll = false }: P
       </div>
       <div className={`product-shelf-track ${unwrapScroll ? 'product-shelf-track-wrap' : ''}`} ref={trackRef}>
         {
-          category.products.map((product) => {
+          category.products.slice(0, visibleCount).map((product) => {
             const isSaved = savedIds.has(product.id);
             const matchedShade = findClosestByHex(product.shades, skinColorHex);
             const showImage = hasRealImage(product.image) && !failedImageIds.has(product.id);
             // Highlighters are inherently shimmery — give their color swatches a
             // sweeping shine so they don't read as flat, matte color blocks.
             const isShimmery = category.key === 'highlight';
+            // Blush reads as soft, diffused powder rather than shine — give it a
+            // gentle radial "bloom" instead of the highlighter's linear sweep.
+            const isBloomy = category.key === 'blush';
+            // Lip product (gloss/lipstick) reads as a small wet-look specular
+            // highlight rather than an overall shine or powder diffusion.
+            const isGlossy = category.key === 'lip';
+            const swatchEffectClass = isShimmery ? 'swatch-shimmer' : isBloomy ? 'swatch-bloom' : isGlossy ? 'swatch-gloss' : '';
             return (
               <div className="product-card" key={product.id}>
                 <div className="product-media">
@@ -101,10 +115,11 @@ export const ProductShelf = ({ category, skinColorHex, unwrapScroll = false }: P
                       onError={() => setFailedImageIds((prev) => new Set(prev).add(product.id))}
                     />
                   ) : (
-                    // No real product photo — fill the media area with the matched shade's
-                    // actual color instead of a generic decorative emoji.
+                    // No real product photo — fill the media area with the matched
+                    // shade's actual color instead of a generic decorative emoji.
+                    // (A more photo-like "swatch on skin" treatment is a later idea.)
                     <span
-                      className={`product-media-swatch ${isShimmery ? 'swatch-shimmer' : ''}`}
+                      className={`product-media-swatch ${swatchEffectClass}`}
                       style={{ backgroundColor: matchedShade.hex }}
                       aria-hidden="true"
                     ></span>
@@ -128,7 +143,7 @@ export const ProductShelf = ({ category, skinColorHex, unwrapScroll = false }: P
                   <div className="product-name">{product.name}</div>
                   <div className="product-shade-swatches tooltip-host" data-fulltext={matchedShade.name}>
                     <span
-                      className={`shade-swatch ${isShimmery ? 'swatch-shimmer' : ''}`}
+                      className={`shade-swatch ${swatchEffectClass}`}
                       style={{ backgroundColor: matchedShade.hex }}
                     ></span>
                     {!isHexLike(matchedShade.name) && (
@@ -145,6 +160,16 @@ export const ProductShelf = ({ category, skinColorHex, unwrapScroll = false }: P
             );
           })
 }
+        {category.products.length > visibleCount && (
+          <button
+            type="button"
+            className="product-card product-load-more-card"
+            onClick={() => setVisibleCount(category.products.length)}
+          >
+            <span className="product-load-more-plus">+{category.products.length - visibleCount}</span>
+            <span className="product-load-more-label">Load more</span>
+          </button>
+        )}
       </div>
     </div>
   )

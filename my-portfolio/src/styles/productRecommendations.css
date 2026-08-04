@@ -198,6 +198,37 @@
   box-shadow: none;
 }
 
+/* Trailing tile shown once a shelf has more products than the initial cap —
+   shares .product-card's sizing/hover behavior but its own dashed, "empty
+   slot" look so it doesn't get mistaken for a real product. */
+.product-load-more-card {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  font-family: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border-style: dashed;
+  background-color: var(--bg-surface);
+}
+
+.product-load-more-plus {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--warn-accent);
+}
+
+.product-load-more-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
 .product-media {
   position: relative;
   height: 180px;
@@ -207,7 +238,10 @@
   justify-content: center;
 }
 
+/* No-photo fallback: just the matched shade's flat color, inset within the
+   media area. The "swatch on skin" treatment is parked for later. */
 .product-media-swatch {
+  position: relative;
   display: block;
   width: calc(100% - 24px);
   height: calc(100% - 24px);
@@ -230,7 +264,9 @@
  * sweeping across the swatch while the card is hovered.
  */
 .swatch-shimmer {
-  position: relative;
+  /* No position here — this class is applied alongside elements that
+     already set their own position (.product-media-swatch: absolute,
+     .shade-swatch: relative), so it only needs to clip the effect. */
   overflow: hidden;
 }
 
@@ -257,6 +293,70 @@
 @keyframes swatch-shimmer-sweep {
   0% { background-position: 200% 0%; }
   100% { background-position: -50% 0%; }
+}
+
+/*
+ * Bloom for blush shades — soft, diffused powder rather than shine. A
+ * blurred radial highlight sits over the flat hex fill at rest, and
+ * expands while the card is hovered, echoing a brush of powder blooming
+ * across skin. It holds at full bloom for as long as the hover lasts,
+ * rather than pulsing, and eases back once the hover ends.
+ */
+.swatch-bloom {
+  overflow: hidden;
+}
+
+.swatch-bloom::after {
+  content: '';
+  position: absolute;
+  inset: -30%;
+  background: radial-gradient(
+    circle at 50% 42%,
+    rgba(255, 255, 255, 0.75) 0%,
+    rgba(255, 255, 255, 0.3) 28%,
+    transparent 60%
+  );
+  filter: blur(2px);
+  transform: scale(0.75);
+  opacity: 0.55;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.product-card:hover .swatch-bloom::after {
+  transform: scale(1.45);
+  opacity: 1;
+}
+
+/*
+ * Gloss for lip shades — a small, tight specular highlight (rather than an
+ * overall shine or soft powder diffusion), like light catching a glossy
+ * lip product. It grows and shifts slightly on hover, as if catching the
+ * light from a new angle, and holds there for as long as the hover lasts.
+ */
+.swatch-gloss {
+  overflow: hidden;
+}
+
+.swatch-gloss::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 30% 60% at 30% 40%,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0.3) 55%,
+    transparent 80%
+  );
+  transform: translateX(0) scale(1);
+  opacity: 0.6;
+  transition: transform 0.35s ease, opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.product-card:hover .swatch-gloss::after {
+  transform: translateX(15%) scale(1.15);
+  opacity: 1;
 }
 
 .product-badge-top {
@@ -407,6 +507,7 @@
 }
 
 .shade-swatch {
+  position: relative;
   width: 18px;
   height: 18px;
   border-radius: 5px;
