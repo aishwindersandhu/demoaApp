@@ -3,22 +3,6 @@ import { CategoryOut } from '../../interfaces/productInterface';
 import { findClosestByHex } from '../../utils/utils';
 import '../../styles/productRecommendations.css';
 
-// Mock icon variety per category — until real product images exist, cycle
-// through a small themed set instead of repeating the category's single icon.
-const CATEGORY_ICON_POOL: Record<string, string[]> = {
-  foundation: ['🧴', '🫙', '💧', '🧪'],
-  blush: ['🌸', '🌺', '🍑', '💗'],
-  lip: ['💄', '💋', '👄', '🎨'],
-  eye: ['👁️', '🖤', '🌙', '🪞'],
-  highlight: ['✨', '🌟', '💫', '☀️'],
-};
-
-/** Picks a decorative icon for a product card, cycling through the category's icon pool by index. */
-const getProductIcon = (category: CategoryOut, index: number) => {
-  const pool = CATEGORY_ICON_POOL[category.key] ?? [category.icon];
-  return pool[index % pool.length];
-};
-
 // Some backend shade entries use the hex code itself as the "name" (no
 // friendly name assigned yet) — showing it would just repeat the swatch's hex.
 const isHexLike = (value: string) => /^#?[0-9a-f]{6}$/i.test(value.trim());
@@ -96,10 +80,13 @@ export const ProductShelf = ({ category, skinColorHex, unwrapScroll = false }: P
       </div>
       <div className={`product-shelf-track ${unwrapScroll ? 'product-shelf-track-wrap' : ''}`} ref={trackRef}>
         {
-          category.products.map((product, index) => {
+          category.products.map((product) => {
             const isSaved = savedIds.has(product.id);
             const matchedShade = findClosestByHex(product.shades, skinColorHex);
             const showImage = hasRealImage(product.image) && !failedImageIds.has(product.id);
+            // Highlighters are inherently shimmery — give their color swatches a
+            // sweeping shine so they don't read as flat, matte color blocks.
+            const isShimmery = category.key === 'highlight';
             return (
               <div className="product-card" key={product.id}>
                 <div className="product-media">
@@ -114,7 +101,13 @@ export const ProductShelf = ({ category, skinColorHex, unwrapScroll = false }: P
                       onError={() => setFailedImageIds((prev) => new Set(prev).add(product.id))}
                     />
                   ) : (
-                    <span className="product-media-icon" aria-hidden="true">{getProductIcon(category, index)}</span>
+                    // No real product photo — fill the media area with the matched shade's
+                    // actual color instead of a generic decorative emoji.
+                    <span
+                      className={`product-media-swatch ${isShimmery ? 'swatch-shimmer' : ''}`}
+                      style={{ backgroundColor: matchedShade.hex }}
+                      aria-hidden="true"
+                    ></span>
                   )}
                   <button
                     className={`product-heart-btn ${isSaved ? 'product-heart-btn-active' : ''}`}
@@ -133,14 +126,13 @@ export const ProductShelf = ({ category, skinColorHex, unwrapScroll = false }: P
                     <span className="truncate-text">{product.brand}</span>
                   </div>
                   <div className="product-name">{product.name}</div>
-                  <div className="product-shade-swatches">
+                  <div className="product-shade-swatches tooltip-host" data-fulltext={matchedShade.name}>
                     <span
-                      className="shade-swatch tooltip-host"
+                      className={`shade-swatch ${isShimmery ? 'swatch-shimmer' : ''}`}
                       style={{ backgroundColor: matchedShade.hex }}
-                      data-fulltext={matchedShade.name}
                     ></span>
                     {!isHexLike(matchedShade.name) && (
-                      <span className="shade-swatch-name tooltip-host" data-fulltext={matchedShade.name}>
+                      <span className="shade-swatch-name">
                         <span className="truncate-text">{matchedShade.name}</span>
                       </span>
                     )}
