@@ -39,9 +39,13 @@ export const ProductShelf = ({ category, skinColorHex, unwrapScroll = false }: P
   // Products whose image 404'd or otherwise failed to load — falls back to
   // the emoji icon rather than showing a broken-image glyph.
   const [failedImageIds, setFailedImageIds] = useState<Set<string>>(new Set());
-  // How many of this category's products are currently rendered — starts
-  // capped at INITIAL_VISIBLE_COUNT, expands to the full list on demand.
+  // How many of this category's products are rendered in the scrolling
+  // carousel view — starts capped at INITIAL_VISIBLE_COUNT, expands to the
+  // full list once "load more" is clicked. The wrapped single-category view
+  // ignores this and always renders every product, relying on page scroll
+  // instead (there's no "load more" tile there — see effectiveVisibleCount).
   const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE_COUNT);
+  const effectiveVisibleCount = unwrapScroll ? category.products.length : visibleCount;
 
   // Scrolls the product track left/right by roughly one card width.
   const scrollByCard = (direction: 1 | -1) => {
@@ -85,9 +89,11 @@ export const ProductShelf = ({ category, skinColorHex, unwrapScroll = false }: P
           </div>
         )}
       </div>
+
+      
       <div className={`product-shelf-track ${unwrapScroll ? 'product-shelf-track-wrap' : ''}`} ref={trackRef}>
         {
-          category.products.slice(0, visibleCount).map((product) => {
+          category.products.slice(0, effectiveVisibleCount).map((product) => {
             const isSaved = savedIds.has(product.id);
             const matchedShade = findClosestByHex(product.shades, skinColorHex);
             const showImage = hasRealImage(product.image) && !failedImageIds.has(product.id);
@@ -160,13 +166,13 @@ export const ProductShelf = ({ category, skinColorHex, unwrapScroll = false }: P
             );
           })
 }
-        {category.products.length > visibleCount && (
+        {!unwrapScroll && category.products.length > effectiveVisibleCount && (
           <button
             type="button"
             className="product-card product-load-more-card"
             onClick={() => setVisibleCount(category.products.length)}
           >
-            <span className="product-load-more-plus">+{category.products.length - visibleCount}</span>
+            <span className="product-load-more-plus">+{category.products.length - effectiveVisibleCount}</span>
             <span className="product-load-more-label">Load more</span>
           </button>
         )}
