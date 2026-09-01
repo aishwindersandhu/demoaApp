@@ -7,8 +7,13 @@
 ───────────────────────────────────────── */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=DM+Sans:wght@400;500&display=swap');
 
+/* Variables live on <html> (toggled by ThemeContext) rather than .app-root
+   alone, so they cascade to <body> too — otherwise body/html stay at the
+   browser's default white canvas wherever app-root's content doesn't fully
+   cover the viewport (short pages, rubber-band overscroll, etc). */
+
 /* ── Dark  :  Slate & Bone ── */
-.app-root.dark {
+html.dark {
   --bg-app:         #1A1C20;
   --bg-card:        #22242A;
   --bg-surface:     #2E3038;
@@ -28,7 +33,7 @@
 }
 
 /* ── Light  :  Parchment ── */
-.app-root.light {
+html.light {
   --bg-app:         #F7F4EF;
   --bg-card:        #F0EBE0;
   --bg-surface:     #E8E2D8;
@@ -48,6 +53,11 @@
 }
 
 /* ── Base resets that apply to both themes ── */
+html, body {
+  background: var(--bg-app);
+  color:      var(--text-primary);
+}
+
 .app-root {
   min-height:  100vh;
   width:       100%;

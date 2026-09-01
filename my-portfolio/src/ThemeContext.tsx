@@ -1,4 +1,4 @@
-import {createContext, useContext,useState} from 'react';
+import {createContext, useContext, useEffect, useState} from 'react';
 import './styles/theme.css';
 
 type Theme = 'light' | 'dark'
@@ -22,6 +22,17 @@ export function ThemeProvider({children} : {children: React.ReactNode}){
   const toggleTheme = () => (
     setTheme(prev=> prev === 'light' ? 'dark':'light')
   )
+
+  // <html>/<body> sit outside .app-root and are never touched by the theme
+  // classes, so they stay at the browser's default (white) background —
+  // visible during rubber-band overscroll or wherever app-root's content is
+  // shorter than the viewport. Mirroring the theme class onto <html> lets
+  // theme.css paint the real page canvas too.
+  useEffect(() => {
+    document.documentElement.classList.remove('light', 'dark');
+    document.documentElement.classList.add(theme);
+  }, [theme]);
+
   return (
     <ThemeContext.Provider value={{theme, toggleTheme}} >
      <div className={`app-root ${theme}`}>

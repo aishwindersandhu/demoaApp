@@ -15,18 +15,17 @@ interface FaceCaptureProps {
 // ─────────────────────────────────────────────────────────────────
 
 const tokens = {
-  bgPage:       "var(--bg-page,        #F7F4EF)",
-  bgSurface:    "var(--bg-surface,     #FDFAF7)",
-  bgOverlay:    "var(--bg-overlay,     rgba(44,24,16,0.38))",
-  borderMuted:  "var(--border-muted,   #D4C4B8)",
-  borderAccent: "var(--border-accent,  #8B6355)",
-  textPrimary:  "var(--text-primary,   #2C1810)",
-  textMuted:    "var(--text-muted,     #A08070)",
-  textSecondary:"var(--text-secondary, #7A6558)",
-  accentBrown:  "var(--accent-brown,   #8B6355)",
-  btnDark:      "var(--btn-dark,       #2C1810)",
-  btnDarkHover: "var(--btn-dark-hover, #3D2418)",
-  btnDarkText:  "var(--btn-dark-text,  #F7F0E8)",
+  bgPage:       "var(--bg-app)",
+  bgSurface:    "var(--bg-surface)",
+  bgCard:       "var(--bg-card)",
+  borderMuted:  "var(--border-soft)",
+  borderAccent: "var(--warn-accent)",
+  textPrimary:  "var(--text-primary)",
+  textMuted:    "var(--text-muted)",
+  accentBrown:  "var(--warn-accent)",
+  btnDark:      "var(--text-primary)",
+  btnDarkText:  "var(--btn-primary-fg)",
+  btnIconBg:    "var(--btn-icon-bg)",
   fontDisplay:  "'Playfair Display', Georgia, serif",
   fontBody:     "'DM Sans', system-ui, sans-serif",
 } as const;
@@ -115,7 +114,7 @@ const FaceCapture: React.FC<FaceCaptureProps> = ({ handleWebImage }) => {
         aspectRatio: "4/3",
         border: `1.5px dashed ${isDragging ? tokens.borderAccent : tokens.borderMuted}`,
         borderRadius: 20,
-        background: isDragging ? "#F5EDE8" : tokens.bgSurface,
+        background: isDragging ? tokens.bgCard : tokens.bgSurface,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -130,7 +129,7 @@ const FaceCapture: React.FC<FaceCaptureProps> = ({ handleWebImage }) => {
       {/* Upload icon */}
       <div style={{
         width: 52, height: 52, borderRadius: "50%",
-        background: "#EDE8E1",
+        background: tokens.btnIconBg,
         display: "flex", alignItems: "center", justifyContent: "center",
       }}>
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
@@ -317,19 +316,19 @@ const SecondaryBtn: React.FC<BtnProps> = ({ onClick, children, icon }) => (
     style={{
       display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
       padding: "13px 20px", borderRadius: 12,
-      border: "1.5px solid #D4C4B8", background: "#FDFAF7",
+      border: "1.5px solid var(--border-soft)", background: "var(--bg-card)",
       fontFamily: "'DM Sans', system-ui, sans-serif",
-      fontSize: 13, fontWeight: 500, color: "#5C4035",
+      fontSize: 13, fontWeight: 500, color: "var(--text-primary)",
       cursor: "pointer", letterSpacing: "0.01em",
       transition: "border-color 0.2s, background 0.2s",
     }}
     onMouseEnter={e => {
-      (e.currentTarget as HTMLButtonElement).style.borderColor = "#8B6355";
-      (e.currentTarget as HTMLButtonElement).style.background = "#F5EDE8";
+      (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--warn-accent)";
+      (e.currentTarget as HTMLButtonElement).style.background = "var(--bg-surface)";
     }}
     onMouseLeave={e => {
-      (e.currentTarget as HTMLButtonElement).style.borderColor = "#D4C4B8";
-      (e.currentTarget as HTMLButtonElement).style.background = "#FDFAF7";
+      (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--border-soft)";
+      (e.currentTarget as HTMLButtonElement).style.background = "var(--bg-card)";
     }}
   >
     {icon}{children}
@@ -343,20 +342,21 @@ const PrimaryBtn: React.FC<BtnProps> = ({ onClick, children, style, disabled }) 
     disabled={disabled}
     style={{
       width: "100%", padding: "16px", borderRadius: 14, border: "none",
-      background: disabled ? "#C4B0A4" : "#2C1810",
-      color: "#F7F0E8",
+      background: disabled ? "var(--text-dim)" : "var(--text-primary)",
+      color: "var(--btn-primary-fg)",
       fontFamily: "'Playfair Display', Georgia, serif",
       fontSize: 16, fontWeight: 400, letterSpacing: "0.04em",
       cursor: disabled ? "not-allowed" : "pointer",
       display: "flex", alignItems: "center", justifyContent: "center", gap: 10,
-      transition: "background 0.2s",
+      transition: "background 0.2s, opacity 0.2s",
+      opacity: disabled ? 1 : undefined,
       ...style,
     }}
     onMouseEnter={e => {
-      if (!disabled) (e.currentTarget as HTMLButtonElement).style.background = "#3D2418";
+      if (!disabled) (e.currentTarget as HTMLButtonElement).style.opacity = "0.85";
     }}
     onMouseLeave={e => {
-      if (!disabled) (e.currentTarget as HTMLButtonElement).style.background = "#2C1810";
+      if (!disabled) (e.currentTarget as HTMLButtonElement).style.opacity = "1";
     }}
   >
     {children}

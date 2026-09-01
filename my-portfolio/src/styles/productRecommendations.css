@@ -517,7 +517,7 @@
 
 .shade-swatch-name {
   font-size: 13px;
-  color: var(--text-secondary, #7A6558);
+  color: var(--text-muted);
   max-width: 120px;
 }
 

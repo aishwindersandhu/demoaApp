@@ -49,7 +49,7 @@ export const UploadImage = () => {
   return (
     <div style={{
       minHeight: "100vh",
-      background: "var(--bg-page, #F7F4EF)",
+      background: "var(--bg-app)",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
@@ -61,7 +61,7 @@ export const UploadImage = () => {
       {/* ── Hero text ── */}
       <p style={{
         fontSize: 11, fontWeight: 500, letterSpacing: "0.18em",
-        textTransform: "uppercase", color: "#A08070", marginBottom: 16,
+        textTransform: "uppercase", color: "var(--text-muted)", marginBottom: 16,
       }}>
         AI Colour Analysis
       </p>
@@ -69,15 +69,15 @@ export const UploadImage = () => {
       <h1 style={{
         fontFamily: "'Playfair Display', Georgia, serif",
         fontSize: "clamp(28px, 5vw, 48px)",
-        fontWeight: 400, color: "#2C1810",
+        fontWeight: 400, color: "var(--text-primary)",
         textAlign: "center", lineHeight: 1.15,
         marginBottom: 12,
       }}>
-        Discover your <em style={{ fontStyle: "italic", color: "#8B6355" }}>perfect</em> palette
+        Discover your <em style={{ fontStyle: "italic", color: "var(--warn-accent)" }}>perfect</em> palette
       </h1>
 
       <p style={{
-        fontSize: 15, fontWeight: 300, color: "#7A6558",
+        fontSize: 15, fontWeight: 300, color: "var(--text-muted)",
         textAlign: "center", maxWidth: 380,
         lineHeight: 1.7, marginBottom: 40,
       }}>
@@ -97,7 +97,7 @@ export const UploadImage = () => {
           {isLoading ? "Analysing…" : (
             <>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                stroke="#F7F0E8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                stroke="var(--btn-primary-fg)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="11" cy="11" r="8"/>
                 <path d="M21 21l-4.35-4.35"/>
               </svg>
