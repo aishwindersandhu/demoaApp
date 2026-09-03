@@ -43,7 +43,7 @@ export const ProductRecommendations = ({
 
   // Notify the parent whenever fresh category data arrives (used to build the mobile filter list).
   useEffect(() => {
-    if (data) onCategoriesLoaded?.(data.categories);
+    if (data) onCategoriesLoaded?.(data.categories.filter((category) => category.key.toLowerCase() !== 'eye'));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
@@ -55,10 +55,12 @@ export const ProductRecommendations = ({
     return <div className="card-container">Couldn't load product recommendations.</div>;
   }
 
-  const filterOptions = ['All', ...data.categories.map((category) => category.label)];
+  // Eye category is hidden for now.
+  const categories = data.categories.filter((category) => category.key.toLowerCase() !== 'eye');
+  const filterOptions = ['All', ...categories.map((category) => category.label)];
   const visibleCategories = selectedFilter === 'All'
-    ? data.categories
-    : data.categories.filter((category) => category.label === selectedFilter);
+    ? categories
+    : categories.filter((category) => category.label === selectedFilter);
 
   return (
     <div className="card-container product-recommendations-card">

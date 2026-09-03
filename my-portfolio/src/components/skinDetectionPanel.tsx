@@ -34,9 +34,9 @@ export const SkinDetection = () => {
   const [productFilter, setProductFilter] = useState('All');
   const [productCategories, setProductCategories] = useState<CategoryOut[]>([]);
 
-  // Renders the currently active board (Colours/Makeup share ColorAnalysis; Products gets its own view).
+  // Renders the currently active board (Colours gets ColorAnalysis; Makeup/Products share ProductRecommendations).
   const getBoard = () => {
-    if (activeBoard === 'Products') {
+    if (activeBoard === 'Products' || activeBoard === 'Makeup') {
       return (
         <ProductRecommendations
           selectedFilter={productFilter}
@@ -49,8 +49,8 @@ export const SkinDetection = () => {
   }
 
   // Builds the "All" + per-category filter list (with counts) shown in the mobile drawer,
-  // only relevant once product categories have loaded on the Products board.
-  const productFilters = activeBoard === 'Products'
+  // only relevant once product categories have loaded on the Makeup/Products board.
+  const productFilters = (activeBoard === 'Products' || activeBoard === 'Makeup')
     ? [
       { key: 'all', label: 'All', count: productCategories.reduce((sum, c) => sum + c.products.length, 0) },
       ...productCategories.map((c) => ({ key: c.key, label: c.label, count: c.products.length })),
