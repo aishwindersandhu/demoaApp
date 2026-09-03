@@ -10,9 +10,9 @@ import { RecommendationResponse } from '../interfaces/productInterface';
 export const imageApi = createApi({
   reducerPath: 'imageAPI',
   baseQuery: fetchBaseQuery(
-    { baseUrl: 'http://127.0.0.1:8000' }
+    // { baseUrl: 'http://127.0.0.1:8000' }
     // Production backend — swap when deploying:
-    //  { baseUrl: 'https://faceapp-1-p1do.onrender.com' }
+     { baseUrl: 'https://faceapp-1-p1do.onrender.com' }
   ),
   endpoints: (builder) => ({
     // builder.query -> GET requests (read-only, cached by default)
