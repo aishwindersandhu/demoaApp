@@ -6,6 +6,7 @@ import '../styles/productRecommendations.css';
 import { useGetRecommendationsMutation } from "../api/imageAPI";
 import { ProductShelf } from "./Cards/ProductShelf";
 import { CategoryOut } from "../interfaces/productInterface";
+import { MatchLoader } from "./MatchLoader";
 
 interface ProductRecommendationsProps {
   // Controlled by SkinDetection when provided, so the mobile nav drawer can
@@ -48,7 +49,7 @@ export const ProductRecommendations = ({
   }, [data]);
 
   if (isLoading) {
-    return <div className="card-container">Finding your matches…</div>;
+    return <MatchLoader />;
   }
 
   if (isError || !data) {

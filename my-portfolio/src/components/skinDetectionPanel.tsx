@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useTheme } from '../ThemeContext';
 import { ColorAnalysis } from './colorAnalysis';
 import { ProductRecommendations } from './productRecommendations';
+import { ComingSoon } from './ComingSoon';
 import { MobileNav } from './MobileNav';
 import { displayBoard } from '../reducers/utilSlice';
 import { CategoryOut } from '../interfaces/productInterface';
@@ -34,9 +35,9 @@ export const SkinDetection = () => {
   const [productFilter, setProductFilter] = useState('All');
   const [productCategories, setProductCategories] = useState<CategoryOut[]>([]);
 
-  // Renders the currently active board (Colours gets ColorAnalysis; Makeup/Products share ProductRecommendations).
+  // Renders the currently active board (Colours gets ColorAnalysis; Makeup gets ProductRecommendations; Products is a placeholder for now).
   const getBoard = () => {
-    if (activeBoard === 'Products' || activeBoard === 'Makeup') {
+    if (activeBoard === 'Makeup') {
       return (
         <ProductRecommendations
           selectedFilter={productFilter}
@@ -45,12 +46,15 @@ export const SkinDetection = () => {
         ></ProductRecommendations>
       );
     }
+    if (activeBoard === 'Products') {
+      return <ComingSoon />;
+    }
     return <ColorAnalysis></ColorAnalysis>;
   }
 
   // Builds the "All" + per-category filter list (with counts) shown in the mobile drawer,
-  // only relevant once product categories have loaded on the Makeup/Products board.
-  const productFilters = (activeBoard === 'Products' || activeBoard === 'Makeup')
+  // only relevant once product categories have loaded on the Makeup board.
+  const productFilters = (activeBoard === 'Makeup')
     ? [
       { key: 'all', label: 'All', count: productCategories.reduce((sum, c) => sum + c.products.length, 0) },
       ...productCategories.map((c) => ({ key: c.key, label: c.label, count: c.products.length })),

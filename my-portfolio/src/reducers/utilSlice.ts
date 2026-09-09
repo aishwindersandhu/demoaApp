@@ -6,7 +6,10 @@ const initialState = {
   //state variable that holds value
   isLoading: false,
   showCards: false,
-  showBoard:''
+  showBoard:'',
+  // User-facing message when analysis fails or can't produce a usable result
+  // (no face detected, backend error, etc). Null when there's no error to show.
+  analysisError: null as string | null,
 }
 
 /** Slice holding UI-only state that isn't tied to analysis data (loading, active tab, etc). */
@@ -26,11 +29,15 @@ const utilsReducer = createSlice({
     /** Sets which board tab (Colours/Makeup/Products) is currently active. */
     displayBoard:(state,action) =>{
       state.showBoard = action.payload
+    },
+    /** Sets/clears the user-facing analysis error message (null clears it). */
+    setAnalysisError:(state,action) =>{
+      state.analysisError = action.payload
     }
   }
 });
 
 //export actions
-export const { displayLoader,displayCards,displayBoard} = utilsReducer.actions;
+export const { displayLoader,displayCards,displayBoard,setAnalysisError} = utilsReducer.actions;
 //export reducer
 export default utilsReducer.reducer;

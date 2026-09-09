@@ -44,7 +44,7 @@ describe('ProductRecommendations', () => {
     renderWithProviders(<ProductRecommendations />, {
       preloadedState: { imageReducer: makeImageReducerState({ imageData: { data: makeFaceDetails() } }) },
     });
-    expect(screen.getByText('Finding your matches…')).toBeInTheDocument();
+    expect(screen.getByText('Finding your matches')).toBeInTheDocument();
   });
 
   it('shows an error message when the request fails', () => {

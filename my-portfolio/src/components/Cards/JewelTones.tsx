@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { colorStrip } from "../../interfaces/imageDataInterface";
 import { CopyButton } from "../copyButton";
 import "../../styles/jewelTones.css";
@@ -46,14 +46,8 @@ const GemShape: React.FC<{ hex: string; name: string }> = ({ hex, name }) => {
 
 /** A single gem tile: illustration, name, hex code, and copy button. */
 const GemItem: React.FC<{ item: colorStrip }> = ({ item }) => {
-  const [hovered, setHovered] = useState(false);
-
   return (
-    <div
-      className="jt-gem-item"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
+    <div className="jt-gem-item">
       <GemShape hex={item.hex} name={item.name} />
 
       <div className="jt-gem-name">{item.name}</div>

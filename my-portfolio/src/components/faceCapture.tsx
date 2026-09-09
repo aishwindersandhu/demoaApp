@@ -6,7 +6,9 @@ import React from "react";
 import { base64ToBlob } from "../utils/utils";
 
 interface FaceCaptureProps {
-  handleWebImage: (image: File) => void;
+  // Uploaded files come through as File; webcam captures (base64ToBlob) are
+  // plain Blobs — both upload fine via FormData, so both are accepted here.
+  handleWebImage: (image: File | Blob) => void;
 }
 
 // ─────────────────────────────────────────────────────────────────
@@ -41,7 +43,7 @@ const TONE_STRIP = ["#F5CBA7","#E59866","#CA6F1E","#A04000","#784212","#4A235A",
  */
 const FaceCapture: React.FC<FaceCaptureProps> = ({ handleWebImage }) => {
   const dispatch   = useDispatch();
-  const webcamRef  = useRef<any>(null);
+  const webcamRef  = useRef<Webcam>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [mode, setMode]               = useState<"idle" | "webcam" | "preview">("idle");
@@ -54,7 +56,8 @@ const FaceCapture: React.FC<FaceCaptureProps> = ({ handleWebImage }) => {
   // Blob, stores it in Redux for preview, and hands it off to the parent.
   const handleCapture = useCallback(() => {
     if (!webcamRef.current) return;
-    const imageSrc: string = webcamRef.current.getScreenshot();
+    const imageSrc = webcamRef.current.getScreenshot();
+    if (!imageSrc) return;
     const imageFile = base64ToBlob(imageSrc);
     dispatch(updateImage(imageSrc));
     handleWebImage(imageFile);

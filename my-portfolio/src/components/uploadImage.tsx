@@ -2,10 +2,11 @@ import FaceCapture, { PrimaryBtn } from './faceCapture';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getImageData } from '../reducers/imageSlice';
-import { displayLoader, displayCards } from '../reducers/utilSlice';
+import { displayLoader, displayCards, setAnalysisError } from '../reducers/utilSlice';
 import { RootState } from '../redux/store';
 import { useUploadImageMutation } from '../api/imageAPI';
 import { useNavigate } from 'react-router-dom';
+import { ImageData } from '../interfaces/imageDataInterface';
 
 /**
  * Landing page: lets the user capture or upload a face photo (via FaceCapture),
@@ -22,26 +23,44 @@ export const UploadImage = () => {
     isLoading: state.utilsReducer.isLoading,
   }));
 
-  const [fileData, setFileData]   = useState<File | undefined>();
+  // Uploads come through as File; webcam captures come through as Blob.
+  const [fileData, setFileData]   = useState<File | Blob | undefined>();
   const [uploadImage]             = useUploadImageMutation();
 
   // FaceCapture calls this whenever a file is ready (upload or webcam)
-  const handleWebImage = (file: File) => {
+  const handleWebImage = (file: File | Blob) => {
     setFileData(file);
   };
 
   // Uploads the captured photo, stores the analysis result in Redux, then
   // navigates immediately (loading state is shown on the results page while
-  // the request is still in flight).
+  // the request is still in flight). The backend has no real face detection —
+  // it colour-samples a fixed center region of the photo — so it can't reject
+  // group photos or reliably distinguish "no face" as an HTTP error. A failed
+  // detection (no usable skin-tone pixels found) still comes back as a 200
+  // with colorCode "unknown" and empty palettes, so that's checked explicitly
+  // alongside genuine request failures (network/5xx).
   const analyzePicture = () => {
     if (!fileData) return;
     dispatch(displayLoader(true));
+    dispatch(setAnalysisError(null));
     uploadImage(fileData).then((res) => {
-      if (res && Object.keys(res).length !== 0) {
-        dispatch(displayLoader(false));
-        dispatch(displayCards(true));
-        dispatch(getImageData(res.data));
+      dispatch(displayLoader(false));
+      if ('error' in res) {
+        dispatch(setAnalysisError(
+          "We couldn't analyse that photo. Please check your connection and try again."
+        ));
+        return;
       }
+      const analysis = res.data as ImageData;
+      if (!analysis?.data?.colorCode || analysis.data.colorCode === 'unknown') {
+        dispatch(setAnalysisError(
+          "We couldn't detect a face in that photo. Use a clear, front-facing photo of a single face, in good lighting."
+        ));
+        return;
+      }
+      dispatch(displayCards(true));
+      dispatch(getImageData(analysis));
     });
     navigate('/results');
   };

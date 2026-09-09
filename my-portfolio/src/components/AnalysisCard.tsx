@@ -2,7 +2,7 @@ import '../styles/analysisCard.css';
 import React from 'react';
 
 interface AnalysisCardProps {
-  value: any;
+  value: string | number;
   title: string;
 }
 

@@ -40,7 +40,18 @@ describe('SkinDetection', () => {
     expect(screen.getByText('Colour analysis')).toBeInTheDocument();
   });
 
-  it('switches to the Products board when its tab is selected', async () => {
+  it('switches to the Makeup board when its tab is selected', async () => {
+    const user = userEvent.setup();
+    renderWithProviders(<SkinDetection />, {
+      preloadedState: { imageReducer: makeImageReducerState({ imageData: { data: faceDetails } }) },
+    });
+
+    await user.click(screen.getAllByText('Makeup')[0]);
+
+    expect(screen.getByText('Finding your matches')).toBeInTheDocument();
+  });
+
+  it('shows a placeholder on the Products board instead of recommendations', async () => {
     const user = userEvent.setup();
     renderWithProviders(<SkinDetection />, {
       preloadedState: { imageReducer: makeImageReducerState({ imageData: { data: faceDetails } }) },
@@ -48,7 +59,8 @@ describe('SkinDetection', () => {
 
     await user.click(screen.getAllByText('Products')[0]);
 
-    expect(screen.getByText('Finding your matches…')).toBeInTheDocument();
+    expect(screen.getByText('Products, coming soon')).toBeInTheDocument();
+    expect(screen.queryByText('Finding your matches')).not.toBeInTheDocument();
   });
 
   it('toggles the theme mode label when the toggle button is clicked', async () => {

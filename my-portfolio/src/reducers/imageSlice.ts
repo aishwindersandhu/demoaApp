@@ -14,11 +14,15 @@ const initialState: ImageReducerState = {
       colorPalette: [],
       profile:{
         undertone: '',
+        contrast: '',
+        depth: '',
         cool_palette:[],
         dark_palette:[],
         warm_palette:[],
         jewel_tones:[],
-        skinTone:''
+        L: 0,
+        a: 0,
+        b: 0
       }
     }
   },

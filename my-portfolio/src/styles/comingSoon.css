@@ -1,0 +1,69 @@
+.coming-soon {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 14px;
+  min-height: 480px;
+}
+
+.coming-soon-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--btn-icon-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 6px;
+}
+
+.coming-soon-badge {
+  padding: 5px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--warn-accent);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.coming-soon-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 400;
+  font-size: 24px;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.coming-soon-sub {
+  font-size: 14px;
+  color: var(--text-muted);
+  max-width: 340px;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.coming-soon-tone-strip {
+  display: flex;
+  width: 180px;
+  height: 5px;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.coming-soon-tone-strip > span {
+  flex: 1;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .coming-soon {
+    min-height: 360px;
+    padding: 32px 20px;
+  }
+}

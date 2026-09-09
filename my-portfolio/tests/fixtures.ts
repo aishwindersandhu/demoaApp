@@ -41,12 +41,14 @@ export interface UtilsState {
   isLoading: boolean;
   showCards: boolean;
   showBoard: string;
+  analysisError: string | null;
 }
 
 export const makeUtilsState = (overrides: Partial<UtilsState> = {}): UtilsState => ({
   isLoading: false,
   showCards: false,
   showBoard: '',
+  analysisError: null,
   ...overrides,
 });
 
